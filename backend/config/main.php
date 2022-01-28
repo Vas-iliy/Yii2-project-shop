@@ -15,25 +15,16 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
-            'cookieValidationKey' => $params['cookieValidationKey'],
             'baseUrl' => '',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => [
-                'name' => '_identity',
-                'httpOnly' => true,
-                'domain' => $params['cookieDomain'],
-            ],
+            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
-            'name' => '_session',
-            'cookieParams' => [
-                'domain' => $params['cookieDomain'],
-                'httpOnly' => true,
-            ]
+            'name' => 'advanced-backend',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -52,7 +43,6 @@ return [
         'urlManager' => function() {
             return Yii::$app->get('backendUrlManager');
         },
-
     ],
     'as access' => [
         'class' => 'yii\filters\AccessControl',

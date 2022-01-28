@@ -44,7 +44,7 @@ class SiteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
@@ -85,17 +85,11 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
+        if (!Yii::$app->user->isGuest) return $this->goHome();
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
+        if ($model->load(Yii::$app->request->post()) && $model->login()) return $this->goBack();
 
         $model->password = '';
-
         return $this->render('login', [
             'model' => $model,
         ]);
@@ -122,15 +116,11 @@ class SiteController extends Controller
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
-            }
+            if ($model->sendEmail(Yii::$app->params['adminEmail'])) Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+            else Yii::$app->session->setFlash('error', 'There was an error sending your message.');
 
             return $this->refresh();
         }
-
         return $this->render('contact', [
             'model' => $model,
         ]);
