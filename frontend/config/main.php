@@ -14,6 +14,7 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
+            'baseUrl' => '',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -36,14 +37,21 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '' => 'site/index',
+                '<_a>' => 'site/<_a>',
+
+                '<_c:[\w\-]+>' => '<_c>/index',
+                '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',
+                '<_c:[\w\-]+>/<_a:[\w-]+>' => '<_c>/<_a>',
+                '<_c:[\w\-]+>/<id:\d+>/<_a:[\w\-]+>' => '<_c>/<_a>',
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];
