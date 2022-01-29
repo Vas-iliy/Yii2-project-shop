@@ -13,19 +13,37 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 </head>
-<body class="d-flex flex-column h-100">
+<body class="hold-transition login-page">
 <?php $this->beginBody() ?>
 
-<main role="main">
-    <div class="container">
-        <?= $content ?>
-    </div>
-</main>
+<div class="login-box">
+  <div class="login-logo">
+    <b>Admin</b>LTE
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+
+    <?=$content?>
+    <!--<div class="social-auth-links text-center">
+      <p>- OR -</p>
+      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+        Facebook</a>
+      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+        Google+</a>
+    </div>-->
+
+    <a href="#">I forgot my password</a><br>
+    <a href="register.html" class="text-center">Register a new membership</a>
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
 
 <?php $this->endBody() ?>
 </body>
