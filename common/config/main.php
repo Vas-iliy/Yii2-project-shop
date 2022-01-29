@@ -12,7 +12,12 @@ return [
         'cache' => [
             'class' => 'yii\caching\MemCache',
             'useMemcached' => true,
-            //'cachePath' => '@common/runtime/cache',
+            'servers' => [
+                [
+                    'host' => '127.0.0.1',
+                    'port' => 11211
+                ],
+            ],
         ],
     ],*/
     'components' => [

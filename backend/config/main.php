@@ -43,6 +43,7 @@ return [
         'urlManager' => function() {
             return Yii::$app->get('backendUrlManager');
         },
+
     ],
     'as access' => [
         'class' => 'yii\filters\AccessControl',

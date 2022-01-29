@@ -2,7 +2,7 @@
 
 return [
     'class' => 'yii\web\UrlManager',
-    'hostInfo' => 'backendHostInfo',
+    'hostInfo' => 'frontendHostInfo',
     'enablePrettyUrl' => true,
     'showScriptName' => false,
     'rules' => [
