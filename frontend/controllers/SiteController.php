@@ -6,7 +6,7 @@ use shop\services\auth\LoginService;
 use shop\forms\auth\ResendVerificationEmailForm;
 use shop\services\auth\PasswordResetService;
 use shop\services\auth\ResendVerificationEmailService;
-use shop\services\auth\SignupService;
+use shop\services\auth\AuthService;
 use shop\services\auth\VerifyEmailService;
 use shop\services\ContactService;
 use Yii;

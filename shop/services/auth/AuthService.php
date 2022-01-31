@@ -3,11 +3,12 @@
 namespace shop\services\auth;
 
 use shop\entities\User;
+use shop\forms\auth\LoginForm;
 use shop\repositories\UserRepository;
 use shop\forms\auth\SignupForm;
 use Yii;
 
-class SignupService
+class AuthService
 {
     private $users;
 
@@ -38,5 +39,14 @@ class SignupService
         if (!$send) {
             throw new \RuntimeException('None');
         }
+    }
+
+    public function auth(LoginForm $form)
+    {
+        $user = $this->users->getBy(['username' => $form->username]);
+        if (!$user->validatePassword($form->password)) {
+            throw new \DomainException('Undefined password');
+        }
+        return $user;
     }
 }

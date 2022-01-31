@@ -4,17 +4,17 @@ namespace frontend\controllers;
 
 use shop\forms\auth\LoginForm;
 use shop\forms\auth\SignupForm;
-use shop\services\auth\LoginService;
-use shop\services\auth\SignupService;
+use shop\services\auth\AuthService;
 use Yii;
 use yii\web\Controller;
 
 class AuthController extends Controller
 {
     private $service;
-    public function __construct($id, $module, LoginService $service, $config = [])
+    public function __construct($id, $module, AuthService $service, $config = [])
     {
         parent::__construct($id, $module, $config);
+        $this->service = $service;
     }
 
     public function actionLogin()
@@ -49,7 +49,7 @@ class AuthController extends Controller
         $form = new SignupForm();
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
-                (new SignupService())->signup($form);
+                $this->service->signup($form);
                 Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
                 return $this->goHome();
             } catch(\DomainException $e) {
