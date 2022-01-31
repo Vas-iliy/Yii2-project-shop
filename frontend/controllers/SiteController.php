@@ -7,6 +7,7 @@ use frontend\services\auth\PasswordResetService;
 use frontend\services\auth\ResendVerificationEmailService;
 use frontend\services\auth\SignupService;
 use frontend\services\auth\VerifyEmailService;
+use frontend\services\contact\ContactService;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -117,15 +118,19 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            else Yii::$app->session->setFlash('error', 'There was an error sending your message.');
-
-            return $this->refresh();
+        $form = new ContactForm();
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try {
+                (new ContactService)->send($form);
+                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+                return $this->refresh();
+            } catch (\Exception $e) {
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
         }
         return $this->render('contact', [
-            'model' => $model,
+            'model' => $form,
         ]);
     }
 
@@ -172,7 +177,7 @@ class SiteController extends Controller
         $form = new PasswordResetRequestForm();
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try{
-                (new PasswordResetService())->request($form);
+                (new PasswordResetService)->request($form);
                 Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
                 return $this->goHome();
             } catch (\DomainException $e) {
@@ -196,7 +201,7 @@ class SiteController extends Controller
      */
     public function actionResetPassword($token)
     {
-        $service = new PasswordResetService();
+        $service = new PasswordResetService;
         try {
             $service->validateToken($token);
         } catch (InvalidArgumentException $e) {
