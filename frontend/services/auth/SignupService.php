@@ -11,10 +11,10 @@ class SignupService
 {
     public function signup(SignupForm $form): User
     {
-        if (User::find()->andWhere(['username' => $form->username])) {
+        if (User::find()->andWhere(['username' => $form->username])->one()) {
             throw new \DomainException('Username is already exists.');
         }
-        if (User::find()->andWhere(['email' => $form->email])) {
+        if (User::find()->andWhere(['email' => $form->email])->one()) {
             throw new \DomainException('E-mail is already exists.');
         }
         $user = User::signup($form->username, $form->email, $form->password);
