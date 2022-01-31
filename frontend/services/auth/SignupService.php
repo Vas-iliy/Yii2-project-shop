@@ -7,7 +7,7 @@ namespace frontend\services\auth;
 use common\models\User;
 use frontend\forms\SignupForm;
 
-class SignupServices
+class SignupService
 {
     public function signup(SignupForm $form): User
     {
