@@ -11,6 +11,12 @@ class SignupServices
 {
     public function signup(SignupForm $form): User
     {
+        if (User::find()->andWhere(['username' => $form->username])) {
+            throw new \DomainException('Username is already exists.');
+        }
+        if (User::find()->andWhere(['email' => $form->email])) {
+            throw new \DomainException('E-mail is already exists.');
+        }
         $user = User::signup($form->username, $form->email, $form->password);
         if (!$user->save()) throw new \RuntimeException('Saving error.');
         $this->sendEmail($user, $form);
