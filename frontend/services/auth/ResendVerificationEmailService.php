@@ -3,23 +3,22 @@
 namespace frontend\services\auth;
 
 use common\models\User;
+use common\repositories\UserRepository;
 use frontend\forms\ResendVerificationEmailForm;
 use Yii;
 
 class ResendVerificationEmailService
 {
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new UserRepository();
+    }
+
     public function sendEmail(ResendVerificationEmailForm $form)
     {
-        if (!User::find()->andWhere(['status' => User::STATUS_INACTIVE])->one()) {
-            throw new \DomainException('There is no user with this email address.');
-        }
-        $user = User::findOne([
-            'email' => $form->email,
-            'status' => User::STATUS_INACTIVE
-        ]);
-        if ($user === null) {
-            throw new \DomainException('User not exist.');
-        }
+        $user = $this->users->getBy(['email' => $form->email]);
         $send = Yii::$app->mailer
             ->compose(
                 ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],

@@ -3,22 +3,24 @@
 namespace frontend\services\auth;
 
 use common\models\User;
+use common\repositories\UserRepository;
 use frontend\forms\PasswordResetRequestForm;
 use frontend\forms\ResetPasswordForm;
 use Yii;
 
 class PasswordResetService
 {
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new UserRepository();
+    }
     public function request(PasswordResetRequestForm $form): void
     {
-        $user = User::findOne([
-            'status' => User::STATUS_ACTIVE,
-            'email' => $form->email,
-        ]);
-        if (!$user) throw new \DomainException('User is not found.');
-
+        $user = $this->users->getBy(['email' => $form->email]);
         $user->requestPasswordReset();
-        if (!$user->save()) throw new \RuntimeException('Saving error.');
+        $this->users->save($user);
         $sent = \Yii::$app->mailer
             ->compose(
                 ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
@@ -33,15 +35,23 @@ class PasswordResetService
     public function validateToken($token): void
     {
         if (empty($token) || !is_string($token)) throw new \DomainException('Password reset token cannot be blank');
-        if (!User::findByPasswordResetToken($token)) throw new \DomainException('Wrong password reset token');
+        $this->users->getUser(User::findByPasswordResetToken($token));
     }
 
     public function reset(string $token, ResetPasswordForm $form): void
     {
-        $user = User::findByPasswordResetToken($token);
-        if (!$user) throw new \DomainException('User is not found.');
-
+        $user = $this->users->getUser(User::findByPasswordResetToken($token));
         $user->resetPassword($form->password);
+        $this->users->save($user);
+    }
+
+    /*private function save(User $user): void
+    {
         if (!$user->save()) throw new \RuntimeException('saving error.');
     }
+
+    private function getUser(User $user)
+    {
+        if (!$user) throw new \DomainException('User is not found.');
+    }*/
 }

@@ -10,6 +10,7 @@ class ContactService
     public function send(ContactForm $form)
     {
         $send = Yii::$app->mailer->compose()
+            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
             ->setTo(Yii::$app->params['adminEmail'])
             ->setReplyTo([$form->email => $form->name])
             ->setSubject($form->subject)

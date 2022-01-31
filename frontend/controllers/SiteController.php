@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use common\models\User;
+use common\repositories\UserRepository;
 use frontend\forms\ResendVerificationEmailForm;
 use frontend\services\auth\PasswordResetService;
 use frontend\services\auth\ResendVerificationEmailService;
