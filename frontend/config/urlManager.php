@@ -7,7 +7,8 @@ return [
     'showScriptName' => false,
     'rules' => [
         '' => 'site/index',
-        '<_a:about|contact|signup|login>' => 'site/<_a>',
+        '<_a:about>' => 'site/<_a>',
+        '<_a:login|signup|logout>' => 'auth/<_a>',
 
         '<_c:[\w\-]+>' => '<_c>/index',
         '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',

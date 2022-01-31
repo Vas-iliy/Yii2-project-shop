@@ -82,67 +82,6 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
-
-    /**
-     * Logs in a user.
-     *
-     * @return mixed
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) return $this->goHome();
-        $form = new LoginForm();
-        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try {
-                $user = (new LoginService())->auth($form);
-                Yii::$app->user->login($user, $form->rememberMe ? 3600 * 24 * 30: 0);
-                return $this->goBack();
-            } catch (\DomainException $e) {
-                Yii::$app->session->setFlash('error', $e->getMessage());
-            }
-        }
-
-        $form->password = '';
-        return $this->render('login', [
-            'model' => $form,
-        ]);
-    }
-
-    /**
-     * Logs out the current user.
-     *
-     * @return mixed
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
-    /**
-     * Displays contact page.
-     *
-     * @return mixed
-     */
-    public function actionContact()
-    {
-        $form = new ContactForm();
-        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try {
-                (new ContactService)->send($form);
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-                return $this->refresh();
-            } catch (\Exception $e) {
-                Yii::$app->errorHandler->logException($e);
-                Yii::$app->session->setFlash('error', $e->getMessage());
-            }
-        }
-        return $this->render('contact', [
-            'model' => $form,
-        ]);
-    }
-
     /**
      * Displays about page.
      *
@@ -151,29 +90,6 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
-    }
-
-    /**
-     * Signs user up.
-     *
-     * @return mixed
-     */
-    public function actionSignup()
-    {
-        $form = new SignupForm();
-        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try {
-                (new SignupService())->signup($form);
-                Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-                return $this->goHome();
-            } catch(\DomainException $e) {
-                Yii::$app->session->setFlash('error', $e->getMessage());
-            }
-        }
-
-        return $this->render('signup', [
-            'model' => $form,
-        ]);
     }
 
     /**
