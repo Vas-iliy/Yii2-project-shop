@@ -1,10 +1,10 @@
 <?php
 
 
-namespace frontend\services\auth;
+namespace shop\services\auth;
 
 
-use common\models\User;
+use shop\entities\User;
 use yii\base\InvalidArgumentException;
 
 class VerifyEmailService

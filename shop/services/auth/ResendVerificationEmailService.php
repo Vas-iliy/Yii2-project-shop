@@ -1,10 +1,10 @@
 <?php
 
-namespace frontend\services\auth;
+namespace shop\services\auth;
 
-use common\models\User;
-use common\repositories\UserRepository;
-use frontend\forms\ResendVerificationEmailForm;
+use shop\entities\User;
+use shop\repositories\UserRepository;
+use shop\forms\auth\ResendVerificationEmailForm;
 use Yii;
 
 class ResendVerificationEmailService

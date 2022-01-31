@@ -17,7 +17,7 @@ return [
             'baseUrl' => '',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'shop\entities\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
