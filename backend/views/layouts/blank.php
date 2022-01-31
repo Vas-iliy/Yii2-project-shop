@@ -22,10 +22,6 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="login-box">
-  <div class="login-logo">
-    <b>Admin</b>LTE
-  </div>
-  <!-- /.login-logo -->
   <div class="login-box-body">
 
     <?=$content?>
