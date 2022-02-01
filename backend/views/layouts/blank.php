@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use backend\assets\AppAsset;
+use common\widgets\Alert;
 use yii\helpers\Html;
 
 AppAsset::register($this);
@@ -23,6 +24,9 @@ AppAsset::register($this);
 
 <div class="login-box">
   <div class="login-box-body">
+      <section class="content-header">
+          <?= Alert::widget() ?>
+      </section>
 
     <?=$content?>
     <!--<div class="social-auth-links text-center">

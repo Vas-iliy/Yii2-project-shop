@@ -60,7 +60,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <img src="<?=Url::to('img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
 
                 <p>
-                    <?=Yii::$app->getUser()->identity->username?> - Web Developer
+                    <?=Yii::$app->user->identity->username?> - Web Developer
                   <small><?=date('Y:m:d', Yii::$app->getUser()->identity->created_at)?></small>
                 </p>
               </li>
@@ -97,7 +97,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="<?=Url::to('img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?=Yii::$app->user->identity->username?></p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
