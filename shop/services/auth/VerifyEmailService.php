@@ -4,7 +4,7 @@
 namespace shop\services\auth;
 
 
-use shop\entities\User;
+use shop\entities\user\User;
 use yii\base\InvalidArgumentException;
 
 class VerifyEmailService

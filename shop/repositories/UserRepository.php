@@ -2,7 +2,7 @@
 
 namespace shop\repositories;
 
-use shop\entities\User;
+use shop\entities\user\User;
 use yii\web\NotFoundHttpException;
 
 class UserRepository

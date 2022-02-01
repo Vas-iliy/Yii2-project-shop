@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $user \shop\entities\User */
+/* @var $user \shop\entities\user\User */
 
 $verifyLink = Yii::$app->urlManager->createAbsoluteUrl(['auth/verification/index', 'token' => $user->verification_token]);
 ?>

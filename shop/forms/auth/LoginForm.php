@@ -2,7 +2,7 @@
 
 namespace shop\forms\auth;
 
-use shop\entities\User;
+use shop\entities\user\User;
 use Yii;
 use yii\base\Model;
 
@@ -58,7 +58,7 @@ class LoginForm extends Model
     /**
      * Finds user by [[username]]
      *
-     * @return \shop\entities\User|null
+     * @return \shop\entities\user\User|null
      */
     protected function getUser()
     {
