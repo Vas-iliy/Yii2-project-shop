@@ -42,6 +42,21 @@ return [
         'urlManager' => function() {
             return Yii::$app->get('frontendUrlManager');
         },
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                /*'google' => [
+                    'class' => 'yii\authclient\clients\GoogleOAuth',
+                    'clientId' => 'google_client_id',
+                    'clientSecret' => 'google_client_secret',
+                ],*/
+                'twitter' => [
+                    'class' => 'yii\authclient\clients\Twitter',
+                    'consumerKey' => 'twitter_consumer_key',
+                    'consumerSecret' => 'twitter_consumer_secret',
+                ],
+            ],
+        ],
 
     ],
     'params' => $params,

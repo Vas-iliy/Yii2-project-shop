@@ -43,6 +43,7 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Signup', 'url' => ['/auth/singup/index']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/auth/auth/login']];
     } else {
+        $menuItems[] = ['label' => 'Cabinet', 'url' => ['cabinet/default/index']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/auth/auth/logout'], 'post', ['class' => 'form-inline'])
             . Html::submitButton(

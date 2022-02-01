@@ -22,4 +22,9 @@ class Network extends ActiveRecord
     {
         return '{{user_networks}}';
     }
+
+    public function isFor($network, $identity)
+    {
+        return $this->network === $network && $this->identity === $identity;
+    }
 }

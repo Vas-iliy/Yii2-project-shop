@@ -15,6 +15,8 @@ return [
         'resend-email' => 'auth/verification/resend-email',
         'request-password' => 'auth/reset/request',
 
+        'cabinet' => 'cabinet/default/index',
+
         '<_c:[\w\-]+>' => '<_c>/index',
         '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',
         '<_c:[\w\-]+>/<_a:[\w-]+>' => '<_c>/<_a>',

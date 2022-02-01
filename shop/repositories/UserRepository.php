@@ -33,4 +33,9 @@ class UserRepository
         if (!$user) throw new NotFoundHttpException('User not found');
         return $user;
     }
+
+    public function findByNetworkIdentity($network, $identity)
+    {
+        return User::find()->joinWith('networks n')->andWhere(['n.network' => $network, 'n.identity' => $identity])->one();
+    }
 }
