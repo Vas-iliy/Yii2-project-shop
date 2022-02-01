@@ -116,23 +116,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
-      </ul>
+      <?=\yii\widgets\Menu::widget([
+          'options' => ['class' => 'sidebar-menu'],
+          'items' => [
+              ['label' => 'Управление', 'options' => ['class' => 'header']],
+              ['label' => 'Пользователи', 'icon' => 'user', 'url' => ['user/index'], 'active' => Yii::$app->controller->id == 'user'],
+          ]
+      ])?>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

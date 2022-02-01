@@ -44,14 +44,4 @@ class PasswordResetService
         $user->resetPassword($form->password);
         $this->users->save($user);
     }
-
-    /*private function save(User $user): void
-    {
-        if (!$user->save()) throw new \RuntimeException('saving error.');
-    }
-
-    private function getUser(User $user)
-    {
-        if (!$user) throw new \DomainException('User is not found.');
-    }*/
 }
