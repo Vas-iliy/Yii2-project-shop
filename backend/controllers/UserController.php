@@ -4,6 +4,9 @@ namespace backend\controllers;
 
 use shop\entities\user\User;
 use backend\forms\UserSearch;
+use shop\forms\admin\UserUpdateForm;
+use shop\forms\auth\SignupForm;
+use shop\services\admin\UserAdminService;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -13,6 +16,13 @@ use yii\filters\VerbFilter;
  */
 class UserController extends Controller
 {
+    private $service;
+
+    public function __construct($id, $module, UserAdminService $service, $config = [])
+    {
+        parent::__construct($id, $module, $config);
+        $this->service = $service;
+    }
 
     public function behaviors()
     {
@@ -49,38 +59,46 @@ class UserController extends Controller
 
     public function actionCreate()
     {
-        $model = new User();
+        $form = new SignupForm();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($form->load($this->request->post()) && $form->validate()) {
+                try {
+                    $user = $this->service->create($form);
+                    return $this->redirect(['view', 'id' => $user->id]);
+                } catch (\DomainException $e) {
+                    \Yii::$app->session->setFlash('error', $e->getMessage());
+                }
             }
-        } else {
-            $model->loadDefaultValues();
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'model' => $form,
         ]);
     }
 
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $user = $this->findModel($id);
+        $form = new UserUpdateForm($user);
+        if ($this->request->isPost && $form->load($this->request->post()) && $form->validate()) {
+            try {
+                $this->service->edit($id, $form);
+                return $this->redirect(['view', 'id' => $user->id]);
+            } catch (\DomainException $e) {
+                \Yii::$app->session->setFlash('error', $e->getMessage());
+            }
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
-            'model' => $model,
+            'model' => $form,
         ]);
     }
 
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $this->service->delete($id);
         return $this->redirect(['index']);
     }
 

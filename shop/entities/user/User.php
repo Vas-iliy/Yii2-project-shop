@@ -43,7 +43,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public static function signupByNetwork($network, $identity)
     {
-        $user = new User();
+        $user = new static();
         $user->generateAuthKey();
         $user->networks = [Network::create($network, $identity)];
         return $user;
@@ -59,6 +59,13 @@ class User extends ActiveRecord implements IdentityInterface
         }
         $networks[] = Network::create($network, $identity);
         $this->nenworks = $networks;
+    }
+
+    public function edit($username, $email)
+    {
+        $this->username = $username;
+        $this->email = $email;
+        $this->updated_at = time();
     }
 
     public function requestPasswordReset(): void
