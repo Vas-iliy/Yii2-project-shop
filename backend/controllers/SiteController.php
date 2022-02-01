@@ -10,26 +10,6 @@ use yii\web\Controller;
 
 class SiteController extends Controller
 {
-    private $service;
-
-    public function __construct($id, $module, AuthService $service, $config = [])
-    {
-        parent::__construct($id, $module, $config);
-        $this->service = $service;
-    }
-
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
-
     public function actions()
     {
         return [
@@ -37,43 +17,5 @@ class SiteController extends Controller
                 'class' => 'yii\web\ErrorAction',
             ],
         ];
-    }
-
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
-
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $this->layout = 'blank';
-
-        $form = new LoginForm();
-        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try {
-                $user = $this->service->auth($form);
-                Yii::$app->user->login($user, $form->rememberMe ? 3600 * 24 * 30: 0);
-                return $this->goBack();
-            } catch (\DomainException $e) {
-                Yii::$app->session->setFlash('error', $e->getMessage());
-            }
-        }
-
-        $form->password = '';
-
-        return $this->render('login', [
-            'model' => $form,
-        ]);
-    }
-
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
     }
 }
