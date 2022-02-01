@@ -40,11 +40,11 @@ AppAsset::register($this);
         ['label' => 'Contact', 'url' => ['/contact/index']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/auth/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/auth/login']];
+        $menuItems[] = ['label' => 'Signup', 'url' => ['/auth/singup/index']];
+        $menuItems[] = ['label' => 'Login', 'url' => ['/auth/auth/login']];
     } else {
         $menuItems[] = '<li>'
-            . Html::beginForm(['/auth/logout'], 'post', ['class' => 'form-inline'])
+            . Html::beginForm(['/auth/auth/logout'], 'post', ['class' => 'form-inline'])
             . Html::submitButton(
                 'Logout (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']

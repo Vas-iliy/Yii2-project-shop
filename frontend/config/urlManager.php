@@ -7,8 +7,13 @@ return [
     'showScriptName' => false,
     'rules' => [
         '' => 'site/index',
-        '<_a:about>' => 'site/<_a>',
-        '<_a:login|signup|logout>' => 'auth/<_a>',
+        'about' => 'site/about',
+        'contact' => 'contact/index',
+        'singup' => 'auth/singup/index',
+        'singup/<_a:[\w-]+>' => 'auth/singup/<_a>',
+        '<_a:login|logout>' => 'auth/auth/<_a>',
+        'resend-email' => 'auth/verification/resend-email',
+        'request-password' => 'auth/reset/request',
 
         '<_c:[\w\-]+>' => '<_c>/index',
         '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',

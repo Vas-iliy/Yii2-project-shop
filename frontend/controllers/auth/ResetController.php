@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\controllers;
+namespace frontend\controllers\auth;
 
 use shop\forms\auth\PasswordResetRequestForm;
 use shop\forms\auth\ResetPasswordForm;
@@ -19,7 +19,7 @@ class ResetController extends \yii\web\Controller
         $this->service = $service;
     }
 
-    public function actionRequestPasswordReset()
+    public function actionRequest()
     {
         $form = new PasswordResetRequestForm();
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
@@ -34,12 +34,12 @@ class ResetController extends \yii\web\Controller
             Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
         }
 
-        return $this->render('requestPasswordResetToken', [
+        return $this->render('request', [
             'model' => $form,
         ]);
     }
 
-    public function actionResetPassword($token)
+    public function actionReset($token)
     {
         try {
             $this->service->validateToken($token);
@@ -59,7 +59,7 @@ class ResetController extends \yii\web\Controller
             }
         }
 
-        return $this->render('resetPassword', [
+        return $this->render('reset', [
             'model' => $form,
         ]);
     }

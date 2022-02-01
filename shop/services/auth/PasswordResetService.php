@@ -16,7 +16,7 @@ class PasswordResetService
     {
         $this->users = new UserRepository();
     }
-    public function request(PasswordResetRequestForm $form): void
+    public function request(PasswordResetRequestForm $form)
     {
         $user = $this->users->getBy(['email' => $form->email]);
         $user->requestPasswordReset();
@@ -32,13 +32,13 @@ class PasswordResetService
         if (!$sent) throw new \RuntimeException('Sending error.');
     }
 
-    public function validateToken($token): void
+    public function validateToken($token)
     {
         if (empty($token) || !is_string($token)) throw new \DomainException('Password reset token cannot be blank');
         $this->users->getUser(User::findByPasswordResetToken($token));
     }
 
-    public function reset(string $token, ResetPasswordForm $form): void
+    public function reset($token, ResetPasswordForm $form)
     {
         $user = $this->users->getUser(User::findByPasswordResetToken($token));
         $user->resetPassword($form->password);

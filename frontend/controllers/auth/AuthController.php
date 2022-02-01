@@ -1,20 +1,49 @@
 <?php
 
-namespace frontend\controllers;
+namespace frontend\controllers\auth;
 
 use shop\forms\auth\LoginForm;
 use shop\forms\auth\SignupForm;
 use shop\services\auth\AuthService;
+use shop\services\auth\VerifyEmailService;
 use Yii;
+use yii\base\InvalidArgumentException;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 
 class AuthController extends Controller
 {
     private $service;
+
     public function __construct($id, $module, AuthService $service, $config = [])
     {
         parent::__construct($id, $module, $config);
         $this->service = $service;
+    }
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['logout'],
+                'rules' => [
+                    [
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
     }
 
     public function actionLogin()
@@ -32,7 +61,7 @@ class AuthController extends Controller
         }
 
         $form->password = '';
-        return $this->render('login', [
+        return $this->render('//auth/login', [
             'model' => $form,
         ]);
     }
@@ -42,23 +71,5 @@ class AuthController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
-    }
-
-    public function actionSignup()
-    {
-        $form = new SignupForm();
-        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try {
-                $this->service->signup($form);
-                Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-                return $this->goHome();
-            } catch(\DomainException $e) {
-                Yii::$app->session->setFlash('error', $e->getMessage());
-            }
-        }
-
-        return $this->render('signup', [
-            'model' => $form,
-        ]);
     }
 }
