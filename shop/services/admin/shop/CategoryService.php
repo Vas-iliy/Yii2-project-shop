@@ -5,11 +5,8 @@ namespace services\admin\shop;
 
 
 use entities\Meta;
-use entities\shop\Brand;
 use entities\shop\Category;
-use forms\admin\shop\BrandForm;
 use forms\admin\shop\CategoryForm;
-use repositories\shop\BrandRepository;
 use repositories\shop\CategoryRepository;
 use yii\helpers\Inflector;
 

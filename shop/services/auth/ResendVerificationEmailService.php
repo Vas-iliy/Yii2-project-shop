@@ -2,7 +2,6 @@
 
 namespace shop\services\auth;
 
-use shop\entities\user\User;
 use shop\repositories\UserRepository;
 use shop\forms\auth\ResendVerificationEmailForm;
 use Yii;
