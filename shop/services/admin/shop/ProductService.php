@@ -14,6 +14,7 @@ use repositories\shop\BrandRepository;
 use repositories\shop\CategoryRepository;
 use repositories\shop\ProductRepository;
 use repositories\shop\TagRepository;
+use services\TransactionManager;
 use yii\helpers\Inflector;
 
 class ProductService
@@ -22,6 +23,7 @@ class ProductService
     private $brands;
     private $categories;
     private $tags;
+    private $transaction;
 
     public function __construct()
     {
@@ -29,6 +31,7 @@ class ProductService
         $this->brands = new BrandRepository();
         $this->categories = new CategoryRepository();
         $this->tags = new TagRepository();
+        $this->transaction = new TransactionManager();
     }
 
     public function create(ProductCreateForm $form)
@@ -58,13 +61,15 @@ class ProductService
             $tag = $this->tags->get($tagId);
             $product->assignTag($tag->id);
         }
-        foreach ($form->tags->newNames as $tagName) {
-            if (!$tag = $this->tags->findByName($tagName)) {
-                $tag = Tag::create($tagName, Inflector::slug($tagName));
-                $this->tags->save($tag);
+        $this->transaction->wrap(function () use ($form, $product){
+            foreach ($form->tags->newNames as $tagName) {
+                if (!$tag = $this->tags->findByName($tagName)) {
+                    $tag = Tag::create($tagName, Inflector::slug($tagName));
+                    $this->tags->save($tag);
+                }
+                $product->assignTag($tag->id);
             }
-            $product->assignTag($tag->id);
-        }
+        });
 
         $this->products->save($product);
         return $product;
