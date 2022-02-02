@@ -11,17 +11,18 @@ class BrandRepository
 {
     public function get($id)
     {
-        if (!$tag = Brand::findOne($id)) throw new NotFoundHttpException('Tag is not found.');
-        return $tag;
+        if (!$brand = Brand::findOne($id)) throw new NotFoundHttpException('Tag is not found.');
+        return $brand;
     }
 
-    public function save(Brand $tag)
+    public function save(Brand $brand)
     {
-        if (!$tag->save()) throw new \RuntimeException('Saving error.');
+        if (!$brand->save()) throw new \RuntimeException('Saving error.');
     }
 
-    public function remove(Brand $tag)
+    public function remove(Brand $brand)
     {
-        if (!$tag->delete()) throw new \RuntimeException('Removing error.');
+        $brand->status = '0';
+        if (!$brand->save()) throw new \RuntimeException('Removing error.');
     }
 }
