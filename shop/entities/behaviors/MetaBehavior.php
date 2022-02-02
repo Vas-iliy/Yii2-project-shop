@@ -25,7 +25,7 @@ class MetaBehavior extends Behavior
     {
         $brand = $event->sender;
         $meta = Json::decode($brand->getAttribute($this->jsonAttribute));
-        $brand->{$this->attribute} = new Meta($meta['title'], $meta['description'], $meta['keywords']);
+        $brand->{$this->attribute} = new Meta($meta['title'] ?? null, $meta['description'] ?? null, $meta['keywords'] ?? null);
     }
 
     public function onBeforeSave(Event $event)

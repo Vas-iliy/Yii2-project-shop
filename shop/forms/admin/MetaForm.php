@@ -1,6 +1,6 @@
 <?php
 
-namespace forms;
+namespace forms\admin;
 
 use entities\Meta;
 use yii\base\Model;

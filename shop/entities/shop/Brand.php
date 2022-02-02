@@ -5,7 +5,6 @@ namespace entities\shop;
 use entities\behaviors\MetaBehavior;
 use entities\Meta;
 use yii\db\ActiveRecord;
-use yii\helpers\Json;
 
 class Brand extends ActiveRecord
 {
