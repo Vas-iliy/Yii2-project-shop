@@ -60,10 +60,23 @@ class Product extends ActiveRecord
         return $product;
     }
 
+    public function edit($brandId, $code, $name, Meta $meta)
+    {
+        $this->brand_id = $brandId;
+        $this->code = $code;
+        $this->name = $name;
+        $this->meta = $meta;
+    }
+
     public function setPrice($new, $old)
     {
         $this->price_new = $new;
         $this->price_old = $old;
+    }
+
+    public function changeMainCategory($categoryId)
+    {
+        $this->category_id = $categoryId;
     }
 
     public function setValue($id, $value)
@@ -90,11 +103,6 @@ class Product extends ActiveRecord
     }
 
     // Categories
-
-    public function changeMainCategory($categoryId)
-    {
-        $this->category_id = $categoryId;
-    }
 
     public function assignCategory($id)
     {
@@ -225,6 +233,35 @@ class Product extends ActiveRecord
         $this->photos = $photos;
         $this->populateRelation('mainPhoto', reset($photos));
     }
+
+    // Related Product
+
+    public function assignRelatedProduct($id)
+    {
+        $assignments = $this->relatedAssignments;
+        foreach ($assignments as $assignment) {
+            if ($assignment->isForProduct($id)) {
+                return;
+            }
+        }
+        $assignments[] = CategoryAssignment::create($id);
+        $this->relatedAssignments = $assignments;
+    }
+
+    public function revokeRelatedProduct($id)
+    {
+        $assignments = $this->relatedAssignments;
+        foreach ($assignments as $i => $assignment) {
+            if ($assignment->isForProduct($id)) {
+                unset($assignments[$i]);
+                $this->relatedAssignments = $assignments;
+                return;
+            }
+        }
+        throw new \DomainException('Assignment is not found.');
+    }
+
+
     ////////////////////////////////////////////
 
     public function getBrand()
@@ -276,10 +313,10 @@ class Product extends ActiveRecord
         return $this->hasOne(Photo::class, ['id' => 'main_photo_id']);
     }*/
 
-    /*public function getRelatedAssignments()
+    public function getRelatedAssignments()
     {
         return $this->hasMany(RelatedAssignment::class, ['product_id' => 'id']);
-    }*/
+    }
 
     public function getRelateds()
     {
@@ -302,7 +339,13 @@ class Product extends ActiveRecord
             MetaBehavior::class,
             [
                 'class' => SaveRelationsBehavior::class,
-                'relations' => ['categoryAssignments', 'values', 'photos'],
+                'relations' => [
+                    'categoryAssignments',
+                    'values',
+                    'photos',
+                    'relatedAssignments',
+                    'tagAssignments'
+                ],
             ],
         ];
     }

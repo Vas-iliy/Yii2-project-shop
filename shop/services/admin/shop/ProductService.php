@@ -10,6 +10,7 @@ use entities\shop\Tag;
 use forms\admin\shop\product\CategoriesForm;
 use forms\admin\shop\product\PhotosForm;
 use forms\admin\shop\product\ProductCreateForm;
+use forms\admin\shop\product\ProductEditForm;
 use repositories\shop\BrandRepository;
 use repositories\shop\CategoryRepository;
 use repositories\shop\ProductRepository;
@@ -57,6 +58,33 @@ class ProductService
         foreach ($form->photos->files as $file) {
             $product->addPhoto($file);
         }
+        $this->setTags($form, $product);
+
+        $this->products->save($product);
+        return $product;
+    }
+
+    public function edit($id, ProductEditForm $form)
+    {
+        $product = $this->products->get($id);
+        $brand = $this->brands->get($id);
+        $product->edit(
+            $brand->id,
+            $form->code,
+            $form->name,
+            new Meta($form->meta->title, $form->meta->description, $form->meta->keywords),
+        );
+        foreach ($form->values as $value) {
+            $product->setValue($value->id, $value->value);
+        }
+        $product->revokeTags();
+        $this->setTags($form, $product);
+
+        $this->products->save($product);
+        return $product;
+    }
+
+    private function setTags($form,Product $product) {
         foreach ($form->tags->existing as $tagId) {
             $tag = $this->tags->get($tagId);
             $product->assignTag($tag->id);
@@ -70,9 +98,6 @@ class ProductService
                 $product->assignTag($tag->id);
             }
         });
-
-        $this->products->save($product);
-        return $product;
     }
 
     public function changeCategories($id, CategoriesForm $form)
