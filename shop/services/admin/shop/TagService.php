@@ -1,12 +1,10 @@
 <?php
 
+namespace shop\services\admin\shop;
 
-namespace services\admin\shop;
-
-
-use entities\shop\Tag;
-use forms\admin\shop\TagForm;
-use repositories\shop\TagRepository;
+use shop\entities\shop\Tag;
+use shop\forms\admin\shop\TagForm;
+use shop\repositories\shop\TagRepository;
 use yii\helpers\Inflector;
 
 class TagService

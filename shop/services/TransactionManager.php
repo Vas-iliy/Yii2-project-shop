@@ -1,6 +1,6 @@
 <?php
 
-namespace services;
+namespace shop\services;
 
 class TransactionManager
 {

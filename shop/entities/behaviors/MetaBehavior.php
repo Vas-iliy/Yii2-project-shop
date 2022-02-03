@@ -1,8 +1,8 @@
 <?php
 
-namespace entities\behaviors;
+namespace shop\entities\behaviors;
 
-use entities\Meta;
+use shop\entities\Meta;
 use yii\base\Behavior;
 use yii\base\Event;
 use yii\db\ActiveRecord;

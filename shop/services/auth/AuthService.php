@@ -4,8 +4,8 @@ namespace shop\services\auth;
 
 use shop\entities\user\User;
 use shop\forms\auth\LoginForm;
-use shop\repositories\UserRepository;
 use shop\forms\auth\SignupForm;
+use shop\repositories\UserRepository;
 use Yii;
 
 class AuthService

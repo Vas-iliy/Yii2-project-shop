@@ -1,6 +1,6 @@
 <?php
 
-namespace forms\admin\shop\product;
+namespace shop\forms\admin\shop\product;
 
 use yii\base\Model;
 use yii\web\UploadedFile;

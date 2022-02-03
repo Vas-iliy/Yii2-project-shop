@@ -1,6 +1,6 @@
 <?php
 
-namespace entities\shop\queries;
+namespace shop\entities\shop\queries;
 
 use paulzi\nestedsets\NestedSetsQueryTrait;
 use yii\db\ActiveQuery;

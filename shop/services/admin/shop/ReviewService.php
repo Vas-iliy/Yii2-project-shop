@@ -1,9 +1,9 @@
 <?php
 
-namespace services\admin\shop;
+namespace shop\services\admin\shop;
 
-use forms\admin\shop\product\ReviewEditForm;
-use repositories\shop\ProductRepository;
+use shop\forms\admin\shop\product\ReviewEditForm;
+use shop\repositories\shop\ProductRepository;
 
 class ReviewService
 {

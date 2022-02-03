@@ -1,11 +1,11 @@
 <?php
 
-namespace services\admin\shop;
+namespace shop\services\admin\shop;
 
-use entities\shop\Characteristic;
-use forms\admin\shop\CategoryForm;
-use forms\admin\shop\CharacteristicForm;
-use repositories\shop\CharacteristicRepository;
+use shop\entities\shop\Characteristic;
+use shop\forms\admin\shop\CategoryForm;
+use shop\forms\admin\shop\CharacteristicForm;
+use shop\repositories\shop\CharacteristicRepository;
 
 class CharacteristicService
 {

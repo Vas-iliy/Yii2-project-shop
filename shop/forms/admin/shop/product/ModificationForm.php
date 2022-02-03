@@ -1,8 +1,8 @@
 <?php
 
-namespace forms\admin\shop\product;
+namespace shop\forms\admin\shop\product;
 
-use entities\shop\product\Modification;
+use shop\entities\shop\product\Modification;
 use yii\base\Model;
 
 class ModificationForm extends Model

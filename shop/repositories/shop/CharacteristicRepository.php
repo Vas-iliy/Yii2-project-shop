@@ -1,10 +1,8 @@
 <?php
 
+namespace shop\repositories\shop;
 
-namespace repositories\shop;
-
-use entities\shop\Category;
-use entities\shop\Characteristic;
+use shop\entities\shop\Characteristic;
 use yii\web\NotFoundHttpException;
 
 class CharacteristicRepository

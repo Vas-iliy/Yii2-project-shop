@@ -1,8 +1,6 @@
 <?php
 
-
-namespace entities;
-
+namespace shop\entities;
 
 class Meta
 {
@@ -12,7 +10,7 @@ class Meta
 
     public function __construct($title, $description, $keywords)
     {
-        $this->title = $this;
+        $this->title = $title;
         $this->description = $description;
         $this->keywords = $keywords;
     }

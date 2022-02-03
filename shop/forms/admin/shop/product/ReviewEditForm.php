@@ -1,8 +1,8 @@
 <?php
 
-namespace forms\admin\shop\product;
+namespace shop\forms\admin\shop\product;
 
-use entities\shop\product\Review;
+use shop\entities\shop\product\Review;
 use yii\base\Model;
 
 class ReviewEditForm extends Model

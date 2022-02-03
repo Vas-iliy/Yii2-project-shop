@@ -1,8 +1,8 @@
 <?php
 
-namespace forms\admin\shop\product;
+namespace shop\forms\admin\shop\product;
 
-use entities\shop\product\Product;
+use shop\entities\shop\product\Product;
 use yii\base\Model;
 
 class PriceForm extends Model

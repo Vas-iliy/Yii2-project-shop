@@ -1,15 +1,12 @@
 <?php
 
+namespace shop\entities\shop;
 
-namespace entities\shop;
-
-
-use entities\behaviors\MetaBehavior;
-use entities\Meta;
-use entities\shop\queries\CategoryQuery;
+use shop\entities\behaviors\MetaBehavior;
+use shop\entities\Meta;
+use shop\entities\shop\queries\CategoryQuery;
 use paulzi\nestedsets\NestedSetsBehavior;
 use yii\db\ActiveRecord;
-
 
 /**
  * @property integer $id
@@ -20,7 +17,7 @@ use yii\db\ActiveRecord;
  * @property integer $lft
  * @property integer $rgt
  * @property integer $depth
- * @property Meta $meta
+ * @property \shop\entities\Meta $meta
  *
  * @property Category $parent
  * @property Category[] $parents
@@ -29,7 +26,6 @@ use yii\db\ActiveRecord;
  * @property Category $next
  * @mixin NestedSetsBehavior
  */
-
 class Category extends ActiveRecord
 {
     public $meta;

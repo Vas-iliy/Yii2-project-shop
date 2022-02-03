@@ -1,12 +1,12 @@
 <?php
 
-namespace entities\shop\product;
+namespace shop\entities\shop\product;
 
-use entities\behaviors\MetaBehavior;
-use entities\Meta;
-use entities\shop\Brand;
-use entities\shop\Category;
-use entities\shop\Tag;
+use shop\entities\behaviors\MetaBehavior;
+use shop\entities\Meta;
+use shop\entities\shop\Brand;
+use shop\entities\shop\Category;
+use shop\entities\shop\Tag;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
@@ -29,9 +29,9 @@ use yii\web\UploadedFile;
  *
  * @property Meta $meta
  * @property Brand $brand
- * @property Category $category
+ * @property \shop\entities\shop\Category $category
  * @property CategoryAssignment[] $categoryAssignments
- * @property Category[] $categories
+ * @property \shop\entities\shop\Category[] $categories
  * @property TagAssignment[] $tagAssignments
  * @property Tag[] $tags
  * @property RelatedAssignment[] $relatedAssignments

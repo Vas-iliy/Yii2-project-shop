@@ -1,13 +1,11 @@
 <?php
 
+namespace shop\services\admin\shop;
 
-namespace services\admin\shop;
-
-
-use entities\Meta;
-use entities\shop\Category;
-use forms\admin\shop\CategoryForm;
-use repositories\shop\CategoryRepository;
+use shop\entities\Meta;
+use shop\entities\shop\Category;
+use shop\forms\admin\shop\CategoryForm;
+use shop\repositories\shop\CategoryRepository;
 use yii\helpers\Inflector;
 
 class CategoryService

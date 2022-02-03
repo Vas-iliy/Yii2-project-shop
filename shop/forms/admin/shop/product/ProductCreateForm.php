@@ -1,11 +1,16 @@
 <?php
 
-namespace forms\admin\shop\product;
+namespace shop\forms\admin\shop\product;
 
-use entities\shop\Characteristic;
-use entities\shop\product\Product;
-use forms\admin\MetaForm;
-use forms\CompositeForm;
+use shop\forms\admin\shop\product\CategoriesForm;
+use shop\forms\admin\shop\product\PhotosForm;
+use shop\forms\admin\shop\product\PriceForm;
+use shop\entities\shop\Characteristic;
+use shop\entities\shop\product\Product;
+use shop\forms\admin\MetaForm;
+use shop\forms\admin\shop\product\TagsForm;
+use shop\forms\admin\shop\product\ValueForm;
+use shop\forms\CompositeForm;
 
 class ProductCreateForm extends CompositeForm
 {

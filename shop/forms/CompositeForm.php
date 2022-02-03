@@ -1,6 +1,6 @@
 <?php
 
-namespace forms;
+namespace shop\forms;
 
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
@@ -9,7 +9,7 @@ abstract class CompositeForm extends Model
 {
     private $forms = [];
 
-    abstract protected function internalForms(): array;
+    abstract protected function internalForms();
 
     public function load($data, $formName = null): bool
     {

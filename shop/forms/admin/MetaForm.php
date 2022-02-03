@@ -1,8 +1,8 @@
 <?php
 
-namespace forms\admin;
+namespace shop\forms\admin;
 
-use entities\Meta;
+use shop\entities\Meta;
 use yii\base\Model;
 
 class MetaForm extends Model

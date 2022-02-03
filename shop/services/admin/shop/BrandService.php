@@ -1,13 +1,11 @@
 <?php
 
+namespace shop\services\admin\shop;
 
-namespace services\admin\shop;
-
-
-use entities\Meta;
-use entities\shop\Brand;
-use forms\admin\shop\BrandForm;
-use repositories\shop\BrandRepository;
+use shop\entities\Meta;
+use shop\entities\shop\Brand;
+use shop\forms\admin\shop\BrandForm;
+use shop\repositories\shop\BrandRepository;
 use yii\helpers\Inflector;
 
 class BrandService

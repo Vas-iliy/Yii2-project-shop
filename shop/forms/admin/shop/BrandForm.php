@@ -1,10 +1,10 @@
 <?php
 
-namespace forms\admin\shop;
+namespace shop\forms\admin\shop;
 
-use entities\shop\Brand;
-use forms\CompositeForm;
-use forms\admin\MetaForm;
+use shop\entities\shop\Brand;
+use shop\forms\CompositeForm;
+use shop\forms\admin\MetaForm;
 
 class BrandForm extends CompositeForm
 {

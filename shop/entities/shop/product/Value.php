@@ -1,8 +1,8 @@
 <?php
 
-namespace entities\shop\product;
+namespace shop\entities\shop\product;
 
-use entities\shop\Characteristic;
+use shop\entities\shop\Characteristic;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 

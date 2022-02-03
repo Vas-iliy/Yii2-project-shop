@@ -1,10 +1,8 @@
 <?php
 
+namespace shop\repositories\shop;
 
-namespace repositories\shop;
-
-
-use entities\shop\Brand;
+use shop\entities\shop\Brand;
 use yii\web\NotFoundHttpException;
 
 class BrandRepository

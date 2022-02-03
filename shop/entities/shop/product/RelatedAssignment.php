@@ -1,10 +1,10 @@
 <?php
 
-namespace entities\shop\product;
+namespace shop\entities\shop\product;
 
 use yii\db\ActiveRecord;
 
-class relatedAssignment extends ActiveRecord
+class RelatedAssignment extends ActiveRecord
 {
     public static function create($productId): self
     {

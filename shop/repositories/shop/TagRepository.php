@@ -1,10 +1,8 @@
 <?php
 
+namespace shop\repositories\shop;
 
-namespace repositories\shop;
-
-
-use entities\shop\Tag;
+use shop\entities\shop\Tag;
 use yii\web\NotFoundHttpException;
 
 class TagRepository

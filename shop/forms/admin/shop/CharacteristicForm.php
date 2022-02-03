@@ -1,11 +1,8 @@
 <?php
 
-namespace forms\admin\shop;
+namespace shop\forms\admin\shop;
 
-use entities\shop\Category;
-use entities\shop\Characteristic;
-use forms\CompositeForm;
-use forms\admin\MetaForm;
+use shop\entities\shop\Characteristic;
 use yii\base\Model;
 
 class CharacteristicForm extends Model

@@ -1,22 +1,20 @@
 <?php
 
+namespace shop\services\admin\shop;
 
-namespace services\admin\shop;
-
-
-use entities\Meta;
-use entities\shop\product\Product;
-use entities\shop\Tag;
-use forms\admin\shop\product\CategoriesForm;
-use forms\admin\shop\product\ModificationForm;
-use forms\admin\shop\product\PhotosForm;
-use forms\admin\shop\product\ProductCreateForm;
-use forms\admin\shop\product\ProductEditForm;
-use repositories\shop\BrandRepository;
-use repositories\shop\CategoryRepository;
-use repositories\shop\ProductRepository;
-use repositories\shop\TagRepository;
-use services\TransactionManager;
+use shop\entities\Meta;
+use shop\entities\shop\product\Product;
+use shop\entities\shop\Tag;
+use shop\forms\admin\shop\product\CategoriesForm;
+use shop\forms\admin\shop\product\ModificationForm;
+use shop\forms\admin\shop\product\PhotosForm;
+use shop\forms\admin\shop\product\ProductCreateForm;
+use shop\forms\admin\shop\product\ProductEditForm;
+use shop\repositories\shop\BrandRepository;
+use shop\repositories\shop\CategoryRepository;
+use shop\repositories\shop\ProductRepository;
+use shop\repositories\shop\TagRepository;
+use shop\services\TransactionManager;
 use yii\helpers\Inflector;
 
 class ProductService

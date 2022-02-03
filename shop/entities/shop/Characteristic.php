@@ -1,6 +1,6 @@
 <?php
 
-namespace entities\shop;
+namespace shop\entities\shop;
 
 use yii\db\ActiveRecord;
 use yii\helpers\Json;

@@ -3,7 +3,6 @@
 namespace shop\forms\admin;
 
 use shop\entities\user\User;
-use Yii;
 use yii\base\Model;
 
 class UserUpdateForm extends Model

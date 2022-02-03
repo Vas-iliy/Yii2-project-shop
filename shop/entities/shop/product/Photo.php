@@ -1,6 +1,6 @@
 <?php
 
-namespace entities\shop\product;
+namespace shop\entities\shop\product;
 
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;

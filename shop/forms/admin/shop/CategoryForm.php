@@ -1,10 +1,10 @@
 <?php
 
-namespace forms\admin\shop;
+namespace shop\forms\admin\shop;
 
-use entities\shop\Category;
-use forms\CompositeForm;
-use forms\admin\MetaForm;
+use shop\entities\shop\Category;
+use shop\forms\CompositeForm;
+use shop\forms\admin\MetaForm;
 
 class CategoryForm extends CompositeForm
 {

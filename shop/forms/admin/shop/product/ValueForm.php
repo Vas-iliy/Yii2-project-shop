@@ -1,9 +1,9 @@
 <?php
 
-namespace forms\admin\shop\product;
+namespace shop\forms\admin\shop\product;
 
-use entities\shop\Characteristic;
-use entities\shop\product\Value;
+use shop\entities\shop\Characteristic;
+use shop\entities\shop\product\Value;
 use yii\base\Model;
 
 class ValueForm extends Model
