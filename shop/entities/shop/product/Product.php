@@ -336,6 +336,77 @@ class Product extends ActiveRecord
         throw new \DomainException('Assignment is not found.');
     }
 
+    // Reviews
+
+    public function addReview($userId, $vote, $text): void
+    {
+        $reviews = $this->reviews;
+        $reviews[] = Review::create($userId, $vote, $text);
+        $this->updateReviews($reviews);
+    }
+
+    public function editReview($id, $vote, $text): void
+    {
+        $this->doWithReview($id, function (Review $review) use ($vote, $text) {
+            $review->edit($vote, $text);
+        });
+    }
+
+    public function activateReview($id): void
+    {
+        $this->doWithReview($id, function (Review $review) {
+            $review->activate();
+        });
+    }
+
+    public function draftReview($id): void
+    {
+        $this->doWithReview($id, function (Review $review) {
+            $review->draft();
+        });
+    }
+
+    private function doWithReview($id, callable $callback): void
+    {
+        $reviews = $this->reviews;
+        foreach ($reviews as $review) {
+            if ($review->isIdEqualTo($id)) {
+                $callback($review);
+                $this->updateReviews($reviews);
+                return;
+            }
+        }
+        throw new \DomainException('Review is not found.');
+    }
+
+    public function removeReview($id): void
+    {
+        $reviews = $this->reviews;
+        foreach ($reviews as $i => $review) {
+            if ($review->isIdEqualTo($id)) {
+                unset($reviews[$i]);
+                $this->updateReviews($reviews);
+                return;
+            }
+        }
+        throw new \DomainException('Review is not found.');
+    }
+
+    private function updateReviews(array $reviews): void
+    {
+        $amount = 0;
+        $total = 0;
+
+        foreach ($reviews as $review) {
+            if ($review->isActive()) {
+                $amount++;
+                $total += $review->getRating();
+            }
+        }
+
+        $this->reviews = $reviews;
+        $this->rating = $amount ? $total / $amount : null;
+    }
 
     ////////////////////////////////////////////
 
@@ -398,10 +469,10 @@ class Product extends ActiveRecord
         return $this->hasMany(Product::class, ['id' => 'related_id'])->via('relatedAssignments');
     }
 
-    /*public function getReviews()
+    public function getReviews()
     {
         return $this->hasMany(Review::class, ['product_id' => 'id']);
-    }*/
+    }
 
     /*public function getWishlistItems()
     {
@@ -421,6 +492,7 @@ class Product extends ActiveRecord
                     'relatedAssignments',
                     'tagAssignments',
                     'modifications',
+                    'reviews',
                 ],
             ],
         ];
