@@ -303,7 +303,7 @@ class Product extends ActiveRecord
             $photo->setSort($i);
         }
         $this->photos = $photos;
-        $this->populateRelation('mainPhoto', reset($photos));
+        //$this->populateRelation('mainPhoto', reset($photos));
     }
 
     // Related Product
@@ -419,8 +419,9 @@ class Product extends ActiveRecord
 
     public function getCategoryAssignments()
     {
-        return $this->hasOne(CategoryAssignment::class, ['product_id', 'id']);
+        return $this->hasMany(CategoryAssignment::class, ['product_id' => 'id']);
     }
+
     public function getCategories()
     {
         return $this->hasMany(Category::class, ['id' => 'category_id'])->via('categoryAssignments');
@@ -451,10 +452,10 @@ class Product extends ActiveRecord
         return $this->hasMany(Photo::class, ['product_id' => 'id'])->orderBy('sort');
     }
 
-    /*public function getMainPhoto()
+    public function getMainPhoto()
     {
         return $this->hasOne(Photo::class, ['id' => 'main_photo_id']);
-    }*/
+    }
 
     public function getRelatedAssignments()
     {
@@ -471,7 +472,7 @@ class Product extends ActiveRecord
         return $this->hasMany(Review::class, ['product_id' => 'id']);
     }
 
-    /*public function getWishlistItems()
+    /*public function getWishlistItems(): ActiveQuery
     {
         return $this->hasMany(WishlistItem::class, ['product_id' => 'id']);
     }*/
