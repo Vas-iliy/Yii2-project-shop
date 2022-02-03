@@ -44,9 +44,6 @@ use yii\web\UploadedFile;
 class Product extends ActiveRecord
 {
     public $meta;
-    /**
-     * @var array|mixed|null
-     */
 
     public static function tableName()
     {
