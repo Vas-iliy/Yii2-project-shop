@@ -32,10 +32,15 @@ use yii\web\UploadedFile;
  * @property Category $category
  * @property CategoryAssignment[] $categoryAssignments
  * @property Category[] $categories
+ * @property TagAssignment[] $tagAssignments
  * @property Tag[] $tags
+ * @property RelatedAssignment[] $relatedAssignments
+ * @property Modification[] $modifications
  * @property Value[] $values
+ * @property Photo[] $photos
+ * @property Photo $mainPhoto
+ * @property Review[] $reviews
  */
-
 class Product extends ActiveRecord
 {
     public $meta;
@@ -79,6 +84,8 @@ class Product extends ActiveRecord
         $this->category_id = $categoryId;
     }
 
+    // Value
+
     public function setValue($id, $value)
     {
         $values = $this->values;
@@ -101,6 +108,74 @@ class Product extends ActiveRecord
         }
         return Value::blank($id);
     }
+
+    // Modification
+
+    public function getModification($id): Modification
+    {
+        foreach ($this->modifications as $modification) {
+            if ($modification->isIdEqualTo($id)) {
+                return $modification;
+            }
+        }
+        throw new \DomainException('Modification is not found.');
+    }
+
+    /*public function getModificationPrice($id): int
+    {
+        foreach ($this->modifications as $modification) {
+            if ($modification->isIdEqualTo($id)) {
+                return $modification->price ?: $this->price_new;
+            }
+        }
+        throw new \DomainException('Modification is not found.');
+    }*/
+
+    public function addModification($code, $name, $price): void
+    {
+        $modifications = $this->modifications;
+        foreach ($modifications as $modification) {
+            if ($modification->isCodeEqualTo($code)) {
+                throw new \DomainException('Modification already exists.');
+            }
+        }
+        $modifications[] = Modification::create($code, $name, $price);
+        $this->modifications = $modifications;
+    }
+
+    public function editModification($id, $code, $name, $price): void
+    {
+        $modifications = $this->modifications;
+        foreach ($modifications as $i => $modification) {
+            if ($modification->isIdEqualTo($id)) {
+                $modification->edit($code, $name, $price);
+                $this->modifications = $modifications;
+                return;
+            }
+        }
+        throw new \DomainException('Modification is not found.');
+    }
+
+    public function removeModification($id): void
+    {
+        $modifications = $this->modifications;
+        foreach ($modifications as $i => $modification) {
+            if ($modification->isIdEqualTo($id)) {
+                unset($modifications[$i]);
+                $this->modifications = $modifications;
+                return;
+            }
+        }
+        throw new \DomainException('Modification is not found.');
+    }
+
+    /*private function updateModifications(array $modifications): void
+    {
+        $this->modifications = $modifications;
+        $this->setQuantity(array_sum(array_map(function (Modification $modification) {
+            return $modification->quantity;
+        }, $this->modifications)));
+    }*/
 
     // Categories
 
@@ -293,10 +368,10 @@ class Product extends ActiveRecord
         return $this->hasMany(Tag::class, ['id' => 'tag_id'])->via('tagAssignments');
     }
 
-    /*public function getModifications()
+    public function getModifications()
     {
         return $this->hasMany(Modification::class, ['product_id' => 'id']);
-    }*/
+    }
 
     public function getValues()
     {
@@ -344,7 +419,8 @@ class Product extends ActiveRecord
                     'values',
                     'photos',
                     'relatedAssignments',
-                    'tagAssignments'
+                    'tagAssignments',
+                    'modifications',
                 ],
             ],
         ];
