@@ -20,6 +20,7 @@ return [
         'user' => [
             'identityClass' => 'shop\entities\user\User',
             'enableAutoLogin' => true,
+            'loginUrl' => [ 'auth/login' ],
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [
@@ -47,7 +48,7 @@ return [
     ],
     'as access' => [
         'class' => 'yii\filters\AccessControl',
-        'except' => ['site/login', 'site/error'],
+        'except' => ['auth/login', 'site/error'],
         'rules' => [
             [
                 'allow' => true,

@@ -13,6 +13,11 @@ class ProductRepository
         return $product;
     }
 
+    public function existByBrand($id)
+    {
+        return Product::find()->andWhere(['brand_id' => $id])->exists();
+    }
+
     public function save(Product $product)
     {
         if (!$product->save()) throw new \RuntimeException('Saving error.');

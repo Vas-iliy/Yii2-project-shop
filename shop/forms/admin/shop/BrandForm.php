@@ -23,16 +23,16 @@ class BrandForm extends CompositeForm
         parent::__construct($config);
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['name'], 'required'],
             [['name'], 'string', 'max' => 255],
-            [['name'], 'unique', 'targetClass' => Brand::class, 'filter' => $this->_brand ? ['<>', 'id', $this->_brand->id] : null],
+            [['name'], 'unique', 'targetClass' => Brand::class, 'filter' => $this->_brand ? ['<>', 'id', $this->_brand->id] : null]
         ];
     }
 
-    protected function internalForms()
+    public function internalForms()
     {
         return ['meta'];
     }

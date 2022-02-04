@@ -119,8 +119,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <?=\yii\widgets\Menu::widget([
           'options' => ['class' => 'sidebar-menu'],
           'items' => [
-              ['label' => 'Управление', 'options' => ['class' => 'header']],
-              ['label' => 'Пользователи', 'icon' => 'user', 'url' => ['user/index'], 'active' => Yii::$app->controller->id == 'user'],
+              ['label' => 'Administration', 'options' => ['class' => 'header']],
+              ['label' => 'Shop', 'icon' => 'folder', 'items' => [
+                  ['label' => 'Brands', 'icon' => 'file-o', 'url' => ['shop/brand/index'], 'active' => Yii::$app->controller->id == 'shop/brand'],
+              ]],
+              ['label' => 'Users', 'icon' => 'user', 'url' => ['user/index'], 'active' => Yii::$app->controller->id == 'user'],
           ]
       ])?>
       <!-- /.sidebar-menu -->
