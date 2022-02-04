@@ -2,6 +2,7 @@
 
 use kartik\date\DatePicker;
 use shop\entities\user\User;
+use shop\helpers\UserHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -48,9 +49,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'email:email',
                     [
                         'attribute' =>'status',
-                        'filter' => \shop\helpers\UserHelper::staticList(),
+                        'filter' => UserHelper::staticList(),
                         'value' => function(User $user) {
-                            return \shop\helpers\UserHelper::statusLabel($user->status);
+                            return UserHelper::statusLabel($user->status);
                         },
                         'format' => 'raw'
                     ],

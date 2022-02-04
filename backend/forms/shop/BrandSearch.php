@@ -12,6 +12,7 @@ use shop\entities\shop\Brand;
 class BrandSearch extends Model
 {
     public $id;
+    public $status;
     public $name;
     public $alias;
     /**
@@ -20,7 +21,7 @@ class BrandSearch extends Model
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'status'], 'integer'],
             [['name', 'alias'], 'safe'],
         ];
     }
@@ -52,7 +53,8 @@ class BrandSearch extends Model
 
         $query->andFilterWhere([
             'id' => $this->id,
-        ]);
+            'status' => $this->status,
+            ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'alias', $this->alias]);

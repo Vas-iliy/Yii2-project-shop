@@ -20,7 +20,7 @@ class BrandRepository
 
     public function remove(Brand $brand)
     {
-        $brand->status = '0';
+        $brand->status = 0;
         if (!$brand->save()) throw new \RuntimeException('Removing error.');
     }
 }

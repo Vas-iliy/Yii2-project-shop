@@ -57,7 +57,6 @@ class BrandService
         if ($this->products->existByBrand($brand->id)) {
             throw new \DomainException('Unable to remove brand with products.');
         }
-        $brand->status = '0';
-        $this->brands->save($brand);
+        $this->brands->remove($brand);
     }
 }

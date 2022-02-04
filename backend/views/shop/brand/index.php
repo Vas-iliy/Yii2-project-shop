@@ -34,6 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'alias',
                     [
                         'attribute' => 'status',
+                        'filter' => [
+                            false => 'Deleted',
+                            true => 'Published',
+                        ],
                         'value' => function(Brand $model) {
                             return $model->status ? '<span class="text-green">Published</span>' : '<span class="text-red">Deleted</span>';
                         },
