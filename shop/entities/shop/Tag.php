@@ -21,6 +21,7 @@ class Tag extends ActiveRecord
 
     public function edit($name, $alias)
     {
+        $this->status = 1;
         $this->name = $name;
         $this->alias = $alias;
     }
