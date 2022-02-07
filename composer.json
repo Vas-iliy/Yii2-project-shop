@@ -23,6 +23,7 @@
         "kartik-v/yii2-widget-datepicker": "^1.4",
         "kartik-v/yii2-field-range": "^1.3",
         "paulzi/yii2-nested-sets": "^1.1",
+        "kartik-v/yii2-widget-fileinput": "^1.1",
         "yii-dream-team/yii2-upload-behavior": "*"
     },
     "require-dev": {

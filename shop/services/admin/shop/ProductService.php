@@ -8,6 +8,7 @@ use shop\entities\shop\Tag;
 use shop\forms\admin\shop\product\CategoriesForm;
 use shop\forms\admin\shop\product\ModificationForm;
 use shop\forms\admin\shop\product\PhotosForm;
+use shop\forms\admin\shop\product\PriceForm;
 use shop\forms\admin\shop\product\ProductCreateForm;
 use shop\forms\admin\shop\product\ProductEditForm;
 use shop\repositories\shop\BrandRepository;
@@ -98,6 +99,13 @@ class ProductService
             }
             $this->products->save($product);
         });
+    }
+
+    public function changePrice($id, PriceForm $form): void
+    {
+        $product = $this->products->get($id);
+        $product->setPrice($form->new, $form->old);
+        $this->products->save($product);
     }
 
     public function changeCategories($id, CategoriesForm $form)

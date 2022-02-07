@@ -6,6 +6,13 @@ use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 use yiidreamteam\upload\ImageUploadBehavior;
 
+/**
+ * @property integer $id
+ * @property string $file
+ * @property integer $sort
+ *
+ * @mixin ImageUploadBehavior
+ */
 class Photo extends ActiveRecord
 {
     public static function create(UploadedFile $file)

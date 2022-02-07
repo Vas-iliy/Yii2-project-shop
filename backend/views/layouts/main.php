@@ -128,6 +128,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </span>
                 </a>
                 <ul class="treeview-menu">
+                    <li class="<?=Yii::$app->controller->id == 'shop/product' ? 'active' : ''?>">
+                        <a href="<?=Url::to(['/shop/product/index'])?>"><i class="fa fa-file-o"></i> Products</a>
+                    </li>
                     <li class="<?=Yii::$app->controller->id == 'shop/brand' ? 'active' : ''?>">
                         <a href="<?=Url::to(['/shop/brand/index'])?>"><i class="fa fa-file-o"></i> Brands</a>
                     </li>

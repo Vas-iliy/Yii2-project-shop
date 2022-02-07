@@ -2,21 +2,19 @@
 
 namespace shop\forms\admin\shop\product;
 
-use shop\forms\admin\shop\product\CategoriesForm;
-use shop\forms\admin\shop\product\PhotosForm;
-use shop\forms\admin\shop\product\PriceForm;
+use shop\entities\shop\Brand;
 use shop\entities\shop\Characteristic;
 use shop\entities\shop\product\Product;
 use shop\forms\admin\MetaForm;
-use shop\forms\admin\shop\product\TagsForm;
-use shop\forms\admin\shop\product\ValueForm;
 use shop\forms\CompositeForm;
+use yii\helpers\ArrayHelper;
 
 class ProductCreateForm extends CompositeForm
 {
     public $brandId;
     public $code;
     public $name;
+    public $description;
 
     public function __construct($config = [])
     {
@@ -34,13 +32,19 @@ class ProductCreateForm extends CompositeForm
     public function rules()
     {
         return [
-            [['brandId', 'code', 'name', 'description'], 'required'],
+            [['brandId', 'code', 'name'], 'required'],
             [['code', 'name'], 'string', 'max' => 255],
             [['brandId'], 'integer'],
             [['description'], 'string'],
             [['code'], 'unique', 'targetClass' => Product::class],
         ];
     }
+
+    public function brandsList()
+    {
+        return ArrayHelper::map(Brand::find()->orderBy('name')->asArray()->all(), 'id', 'name');
+    }
+
 
     protected function internalForms()
     {

@@ -45,6 +45,10 @@ class Product extends ActiveRecord
 {
     public $meta;
 
+    const STATUS_DRAFT = 1;
+    const STATUS_ACTIVE = 2;
+    const STATUS_DELETE = 0;
+
     public static function tableName()
     {
         return '{{%shop_products}}';
@@ -59,6 +63,7 @@ class Product extends ActiveRecord
         $product->name = $name;
         $product->description = $description;
         $product->meta = $meta;
+        $product->status = self::STATUS_DRAFT;
         $product->created_at = time();
         return $product;
     }
@@ -90,6 +95,8 @@ class Product extends ActiveRecord
         $values = $this->values;
         foreach ($values as $val) {
             if ($val->isForCharacteristic($id)) {
+                $val->change($value);
+                $this->values = $values;
                 return;
             }
         }
@@ -120,7 +127,7 @@ class Product extends ActiveRecord
         throw new \DomainException('Modification is not found.');
     }
 
-    /*public function getModificationPrice($id): int
+    public function getModificationPrice($id): int
     {
         foreach ($this->modifications as $modification) {
             if ($modification->isIdEqualTo($id)) {
@@ -128,7 +135,7 @@ class Product extends ActiveRecord
             }
         }
         throw new \DomainException('Modification is not found.');
-    }*/
+    }
 
     public function addModification($code, $name, $price): void
     {
@@ -308,7 +315,7 @@ class Product extends ActiveRecord
         $this->populateRelation('mainPhoto', reset($photos));
     }
 
-    // Related Product
+    // Related ProductSearch
 
     public function assignRelatedProduct($id)
     {

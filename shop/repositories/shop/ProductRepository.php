@@ -28,9 +28,9 @@ class ProductRepository
         if (!$product->save()) throw new \RuntimeException('Saving error.');
     }
 
-    /*public function remove(Product $product)
+    public function remove(Product $product)
     {
-        $product->status = 0;
+        $product->status = $product::STATUS_DELETE;
         if (!$product->save()) throw new \RuntimeException('Removing error.');
-    }*/
+    }
 }
