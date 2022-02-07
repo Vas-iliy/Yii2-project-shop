@@ -16,6 +16,7 @@ class AppAsset extends AssetBundle
         'css/ionicons.min.css',
         'css/AdminLTE.min.css',
         'css/skin-blue.min.css',
+        'css/site.css',
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
     ];
     public $js = [

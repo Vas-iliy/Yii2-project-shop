@@ -50,23 +50,25 @@ class Product extends ActiveRecord
         return '{{%shop_products}}';
     }
 
-    public static function create($brandId, $categoryId, $code, $name, Meta $meta)
+    public static function create($brandId, $categoryId, $code, $name, $description, Meta $meta)
     {
         $product = new static();
         $product->brand_id = $brandId;
         $product->category_id = $categoryId;
         $product->code = $code;
         $product->name = $name;
+        $product->description = $description;
         $product->meta = $meta;
         $product->created_at = time();
         return $product;
     }
 
-    public function edit($brandId, $code, $name, Meta $meta)
+    public function edit($brandId, $code, $name, $description, Meta $meta)
     {
         $this->brand_id = $brandId;
         $this->code = $code;
         $this->name = $name;
+        $this->description = $description;
         $this->meta = $meta;
     }
 
@@ -303,7 +305,7 @@ class Product extends ActiveRecord
             $photo->setSort($i);
         }
         $this->photos = $photos;
-        //$this->populateRelation('mainPhoto', reset($photos));
+        $this->populateRelation('mainPhoto', reset($photos));
     }
 
     // Related Product
@@ -501,5 +503,14 @@ class Product extends ActiveRecord
         return [
             self::SCENARIO_DEFAULT => self::OP_ALL,
         ];
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        $related = $this->getRelatedRecords();
+        if (array_key_exists('mainPhoto', $related)) {
+            $this->updateAttributes(['main_photo_id' => $related['mainPhoto'] ? $related['mainPhoto']->id : null]);
+        }
+        parent::afterSave($insert, $changedAttributes);
     }
 }

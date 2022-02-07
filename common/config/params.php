@@ -5,4 +5,6 @@ return [
     'senderName' => 'Shop',
     'user.passwordResetTokenExpire' => 3600,
     'user.passwordMinLength' => 8,
+    'staticPath' => dirname(__DIR__) . '/../static',
+    'staticHostInfo' => 'http://static'
 ];

@@ -34,9 +34,10 @@ class ProductCreateForm extends CompositeForm
     public function rules()
     {
         return [
-            [['brandId', 'code', 'name'], 'required'],
+            [['brandId', 'code', 'name', 'description'], 'required'],
             [['code', 'name'], 'string', 'max' => 255],
             [['brandId'], 'integer'],
+            [['description'], 'string'],
             [['code'], 'unique', 'targetClass' => Product::class],
         ];
     }

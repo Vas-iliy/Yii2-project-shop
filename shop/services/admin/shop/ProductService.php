@@ -43,6 +43,7 @@ class ProductService
             $category->id,
             $form->code,
             $form->name,
+            $form->description,
             new Meta($form->meta->title, $form->meta->description, $form->meta->keywords),
         );
         $product->setPrice($form->price->new, $form->price->old);
@@ -70,6 +71,7 @@ class ProductService
             $brand->id,
             $form->code,
             $form->name,
+            $form->description,
             new Meta($form->meta->title, $form->meta->description, $form->meta->keywords),
         );
         foreach ($form->values as $value) {
