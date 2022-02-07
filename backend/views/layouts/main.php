@@ -137,6 +137,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <li class="<?=Yii::$app->controller->id == 'shop/category' ? 'active' : ''?>">
                         <a href="<?=Url::to(['/shop/category/index'])?>"><i class="fa fa-file-o"></i> Categories</a>
                     </li>
+                    <li class="<?=Yii::$app->controller->id == 'shop/characteristic' ? 'active' : ''?>">
+                        <a href="<?=Url::to(['/shop/characteristic/index'])?>"><i class="fa fa-file-o"></i> Characteristics</a>
+                    </li>
                 </ul>
             </li>
             <li class="<?=Yii::$app->controller->id == 'user' ? 'active' : ''?>">

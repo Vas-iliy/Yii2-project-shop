@@ -18,23 +18,23 @@ class Characteristic extends ActiveRecord
         return '{{%shop_characteristics}}';
     }
 
-    public static function create($name, $type, $request, $default, $variants, $sort)
+    public static function create($name, $type, $required, $default, $variants, $sort)
     {
         $category = new static();
         $category->name = $name;
         $category->type = $type;
-        $category->request = $request;
+        $category->required = $required;
         $category->default = $default;
         $category->variants = $variants;
         $category->sort = $sort;
         return $category;
     }
 
-    public function edit($name, $type, $request, $default, $variants, $sort)
+    public function edit($name, $type, $required, $default, $variants, $sort)
     {
         $this->name = $name;
         $this->type = $type;
-        $this->request = $request;
+        $this->required = $required;
         $this->default = $default;
         $this->variants = $variants;
         $this->sort = $sort;

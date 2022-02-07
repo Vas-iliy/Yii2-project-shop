@@ -20,7 +20,7 @@ class CharacteristicRepository
 
     public function remove(Characteristic $characteristic)
     {
-        $characteristic->status = '0';
+        $characteristic->status = 0;
         if (!$characteristic->save()) throw new \RuntimeException('Removing error.');
     }
 }

@@ -21,25 +21,25 @@ class CharacteristicService
         $characteristic = Characteristic::create(
             $form->name,
             $form->type,
-            $form->request,
+            $form->required,
             $form->default,
             $form->variants,
-            $form->sort,
+            $form->sort
           );
         $this->characteristics->save($characteristic);
         return $characteristic;
     }
 
-    public function edit($id, CategoryForm $form)
+    public function edit($id, CharacteristicForm $form)
     {
         $characteristics = $this->characteristics->get($id);
         $characteristics->edit(
             $form->name,
             $form->type,
-            $form->request,
+            $form->required,
             $form->default,
             $form->variants,
-            $form->sort,
+            $form->sort
         );
         $this->characteristics->save($characteristics);
     }
