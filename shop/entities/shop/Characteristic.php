@@ -32,6 +32,7 @@ class Characteristic extends ActiveRecord
 
     public function edit($name, $type, $required, $default, $variants, $sort)
     {
+        $this->status = 1;
         $this->name = $name;
         $this->type = $type;
         $this->required = $required;

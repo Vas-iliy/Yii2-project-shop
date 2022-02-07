@@ -1,6 +1,7 @@
 <?php
 
 use shop\helpers\CharacteristicHelper;
+use shop\helpers\StatusHelper;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -41,6 +42,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'variants',
                         'value' => implode(PHP_EOL, $model->variants),
                         'format' => 'ntext',
+                    ],
+                    [
+                        'attribute' => 'status',
+                        'filter' => StatusHelper::staticList(),
+                        'value' => function($model) {
+                            return StatusHelper::statusName($model->status);
+                        },
+                        'format' => 'raw',
                     ],
                 ],
             ]) ?>

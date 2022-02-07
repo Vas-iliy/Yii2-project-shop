@@ -2,6 +2,7 @@
 
 use shop\entities\shop\Characteristic;
 use shop\helpers\CharacteristicHelper;
+use shop\helpers\StatusHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -46,12 +47,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute' => 'status',
-                        'filter' => [
-                            false => 'Deleted',
-                            true => 'Published',
-                        ],
+                        'filter' => StatusHelper::staticList(),
                         'value' => function(Characteristic $model) {
-                            return $model->status ? '<span class="text-green">Published</span>' : '<span class="text-red">Deleted</span>';
+                            return StatusHelper::statusName($model->status);
                         },
                         'format' => 'raw',
                     ],

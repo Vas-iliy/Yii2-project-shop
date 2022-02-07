@@ -1,6 +1,7 @@
 <?php
 
 use shop\entities\shop\Brand;
+use shop\helpers\StatusHelper;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -34,8 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'alias',
                     [
                         'attribute' => 'status',
-                        'value' => function(Brand $model) {
-                            return $model->status ? '<span class="text-green">Published</span>' : '<span class="text-red">Deleted</span>';
+                        'filter' => StatusHelper::staticList(),
+                        'value' => function($model) {
+                            return StatusHelper::statusName($model->status);
                         },
                         'format' => 'raw',
                     ],
