@@ -5,6 +5,7 @@ namespace shop\forms\admin\shop;
 use shop\entities\shop\Category;
 use shop\forms\CompositeForm;
 use shop\forms\admin\MetaForm;
+use yii\helpers\ArrayHelper;
 
 class CategoryForm extends CompositeForm
 {
@@ -38,6 +39,13 @@ class CategoryForm extends CompositeForm
             [['description'], 'string'],
             [['name'], 'unique', 'targetClass' => Category::class, 'filter' => $this->_category ? ['<>', 'id', $this->_category->id] : null],
         ];
+    }
+
+    public function parentCategoriesList()
+    {
+        return ArrayHelper::map(Category::find()->orderBy('lft')->asArray()->all(), 'id', function ($category) {
+           return ($category['depth'] > 1 ? str_repeat('--', $category['depth'] -1) . ' ' : '') . $category['name'];
+        });
     }
 
     protected function internalForms()

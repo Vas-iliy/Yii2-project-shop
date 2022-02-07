@@ -20,7 +20,7 @@ class CategoryRepository
 
     public function remove(Category $category)
     {
-        $category->status = '0';
+        $category->status = 0;
         if (!$category->save()) throw new \RuntimeException('Removing error.');
     }
 }

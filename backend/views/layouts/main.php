@@ -5,6 +5,7 @@ use common\widgets\Alert;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
+use yii\widgets\Menu;
 
 AppAsset::register($this);
 ?>
@@ -116,17 +117,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
-      <?=\yii\widgets\Menu::widget([
-          'options' => ['class' => 'sidebar-menu'],
-          'items' => [
-              ['label' => 'Administration', 'options' => ['class' => 'header']],
-              ['label' => 'Shop', 'icon' => 'folder', 'items' => [
-                  ['label' => 'Brands', 'icon' => 'file-o', 'url' => ['shop/brand/index'], 'active' => Yii::$app->controller->id == 'shop/brand'],
-                  ['label' => 'Tags', 'icon' => 'file-o', 'url' => ['shop/tag/index'], 'active' => Yii::$app->controller->id == 'shop/tag'],
-              ]],
-              ['label' => 'Users', 'icon' => 'user', 'url' => ['user/index'], 'active' => Yii::$app->controller->id == 'user'],
-          ]
-      ])?>
+
+        <ul class="sidebar-menu tree" data-widget="tree">
+            <li class="header">Administration</li>
+            <li class="treeview<?=Yii::$app->controller->id == 'shop' ? 'active' : ''?>">
+                <a href="#">
+                    <i class="fa fa-folder"></i> <span>Shop</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?=Yii::$app->controller->id == 'shop/brand' ? 'active' : ''?>">
+                        <a href="<?=Url::to(['/shop/brand/index'])?>"><i class="fa fa-file-o"></i> Brands</a>
+                    </li>
+                    <li class="<?=Yii::$app->controller->id == 'shop/tag' ? 'active' : ''?>">
+                        <a href="<?=Url::to(['/shop/tag/index'])?>"><i class="fa fa-file-o"></i> Tags</a>
+                    </li>
+                    <li class="<?=Yii::$app->controller->id == 'shop/category' ? 'active' : ''?>">
+                        <a href="<?=Url::to(['/shop/category/index'])?>"><i class="fa fa-file-o"></i> Categories</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="<?=Yii::$app->controller->id == 'user' ? 'active' : ''?>">
+                <a href="<?=Url::to(['/user/index'])?>">
+                    <i class="fa fa-user-md"></i> <span>Users</span>
+                    <span class="pull-right-container"></span>
+                </a>
+            </li>
+        </ul>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
@@ -143,9 +162,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Main content -->
     <section class="content container-fluid">
-
+        <h2><?= Html::encode($this->title) ?></h2>
         <?= $content ?>
-
     </section>
     <!-- /.content -->
   </div>

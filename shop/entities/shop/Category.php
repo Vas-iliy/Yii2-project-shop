@@ -10,8 +10,9 @@ use yii\db\ActiveRecord;
 
 /**
  * @property integer $id
+ * @property integer $status
  * @property string $name
- * @property string $slug
+ * @property string $alias
  * @property string $title
  * @property string $description
  * @property integer $lft
@@ -48,6 +49,7 @@ class Category extends ActiveRecord
 
     public function edit($name, $alias, $title, $description, Meta $meta)
     {
+        $this->status = 1;
         $this->name = $name;
         $this->alias = $alias;
         $this->title = $title;
