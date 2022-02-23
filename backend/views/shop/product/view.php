@@ -1,5 +1,6 @@
 <?php
 
+use kartik\file\FileInput;
 use shop\entities\shop\product\Modification;
 use shop\entities\shop\product\Value;
 use shop\helpers\PriceHelper;
@@ -139,7 +140,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             return PriceHelper::format($model->price);
                         },
                     ],
-                    'quantity',
                     [
                         'class' => ActionColumn::class,
                         'controller' => 'shop/modification',

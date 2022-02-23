@@ -3,18 +3,15 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model shop\entities\shop\product\Modification */
+/* @var $product shop\entities\shop\product\Product */
 
 $this->title = 'Create Modification';
-$this->params['breadcrumbs'][] = ['label' => 'Modifications', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['shop/product/index']];
+$this->params['breadcrumbs'][] = ['label' => $product->name, 'url' => ['shop/product/view', 'id' => $product->id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="modification-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-
 </div>
