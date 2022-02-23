@@ -154,7 +154,7 @@ class ProductController extends Controller
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
-        return $this->render('price', [
+        return $this->render('category', [
             'model' => $form,
             'product' => $product,
         ]);

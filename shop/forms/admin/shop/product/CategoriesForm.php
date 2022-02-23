@@ -16,7 +16,7 @@ class CategoriesForm extends Model
     {
         if ($product) {
             $this->main = $product->category_id;
-            $this->others = ArrayHelper::getColumn($product->categoryAssigments, 'category_id');
+            $this->others = ArrayHelper::getColumn($product->categoryAssignments, 'category_id');
         }
         parent::__construct($config);
     }
@@ -39,7 +39,7 @@ class CategoriesForm extends Model
 
     public function beforeValidate()
     {
-        $this->others = array_filter($this->others);
+        $this->others = array_filter((array)$this->others);
         return parent::beforeValidate();
     }
 }

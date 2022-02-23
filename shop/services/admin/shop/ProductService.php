@@ -128,6 +128,7 @@ class ProductService
         $category = $this->categories->get($form->main);
         $product->changeMainCategory($category->id);
         $product->revokeCategories();
+        $this->products->save($product);
         foreach ($form->others as $otherId) {
             $category = $this->categories->get($otherId);
             $product->assignCategory($category->id);
