@@ -45,9 +45,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-    <?/*=$this->render('_price_form', [
-        'model' => $model,
-    ])*/?>
     <div class="box box-default">
         <div class="box-header with-border">Categories</div>
         <div class="box-body">
@@ -55,9 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model->categories, 'others')->checkboxList($list) ?>
         </div>
     </div>
-    <?/*=$this->render('_categories_form', [
-        'model' => $model,
-    ])*/?>
     <div class="box box-default">
         <div class="box-header with-border">Tags</div>
         <div class="box-body">
@@ -65,9 +59,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model->tags, 'textNew')->textInput() ?>
         </div>
     </div>
-    <?/*=$this->render('_tags_form', [
-        'model' => $model,
-    ])*/?>
     <div class="box box-default">
         <div class="box-header with-border">Characteristics</div>
         <div class="box-body">
@@ -80,9 +71,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php endforeach; ?>
         </div>
     </div>
-    <?/*=$this->render('_characteristic_form', [
-        'model' => $model,
-    ])*/?>
     <div class="box box-default">
         <div class="box-header with-border">Photos</div>
         <div class="box-body">

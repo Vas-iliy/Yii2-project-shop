@@ -144,7 +144,7 @@ class Product extends ActiveRecord
 
     // Modification
 
-    public function getModification($id): Modification
+    public function getModification($id)
     {
         foreach ($this->modifications as $modification) {
             if ($modification->isIdEqualTo($id)) {
@@ -154,7 +154,7 @@ class Product extends ActiveRecord
         throw new \DomainException('Modification is not found.');
     }
 
-    public function getModificationPrice($id): int
+    public function getModificationPrice($id)
     {
         foreach ($this->modifications as $modification) {
             if ($modification->isIdEqualTo($id)) {
@@ -164,7 +164,7 @@ class Product extends ActiveRecord
         throw new \DomainException('Modification is not found.');
     }
 
-    public function addModification($code, $name, $price): void
+    public function addModification($code, $name, $price)
     {
         $modifications = $this->modifications;
         foreach ($modifications as $modification) {
