@@ -40,7 +40,7 @@ class TagsForm extends Model
 
     public function beforeValidate()
     {
-        $this->existing = array_filter($this->existing);
+        $this->existing = array_filter((array)$this->existing);
         return parent::beforeValidate();
     }
 

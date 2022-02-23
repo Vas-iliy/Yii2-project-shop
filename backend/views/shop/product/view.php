@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'code',
                             'name',
                             [
-                                'attribute' => 'category_id',
+                                'attribute' => 'category',
                                 'value' => ArrayHelper::getValue($product, 'category.name'),
                             ],
                             [
@@ -179,25 +179,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="row">
                 <?php foreach ($product->photos as $photo): ?>
-                    <div class="col-md-2 col-xs-3" style="text-align: center">
+                    <div class="col-md-2 col-xs-3" style="text-align: center; margin-left: 100px">
                         <div class="btn-group">
-                            <?= Html::a('<span class="glyphicon glyphicon-arrow-left"></span>', ['move-photo-up', 'id' => $product->id, 'photo_id' => $photo->id], [
+                            <?= Html::a('<span class="fa  fa-angle-left"></span>', ['move-photo-up', 'id' => $product->id, 'photo_id' => $photo->id], [
                                 'class' => 'btn btn-default',
                                 'data-method' => 'post',
                             ]); ?>
-                            <?= Html::a('<span class="glyphicon glyphicon-remove"></span>', ['delete-photo', 'id' => $product->id, 'photo_id' => $photo->id], [
+                            <?= Html::a('<span class="fa fa-remove"></span>', ['delete-photo', 'id' => $product->id, 'photo_id' => $photo->id], [
                                 'class' => 'btn btn-default',
                                 'data-method' => 'post',
                                 'data-confirm' => 'Remove photo?',
                             ]); ?>
-                            <?= Html::a('<span class="glyphicon glyphicon-arrow-right"></span>', ['move-photo-down', 'id' => $product->id, 'photo_id' => $photo->id], [
+                            <?= Html::a('<span class="fa fa-angle-right"></span>', ['move-photo-down', 'id' => $product->id, 'photo_id' => $photo->id], [
                                 'class' => 'btn btn-default',
                                 'data-method' => 'post',
                             ]); ?>
                         </div>
                         <div>
                             <?= Html::a(
-                                Html::img($photo->getThumbFileUrl('file', 'thumb')),
+                                Html::img($photo->getThumbFileUrl('file', 'thumb'), ['style' => 'width: 150px']),
                                 $photo->getUploadedFileUrl('file'),
                                 ['class' => 'thumbnail', 'target' => '_blank']
                             ) ?>

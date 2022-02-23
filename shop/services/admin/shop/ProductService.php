@@ -59,7 +59,22 @@ class ProductService
         foreach ($form->photos->files as $file) {
             $product->addPhoto($file);
         }
-        $this->setTags($form, $product);
+        foreach ($form->tags->existing as $tagId) {
+            $tag = $this->tags->get($tagId);
+            $product->assignTag($tag->id);
+        }
+        $this->transaction->wrap(function () use ($product, $form) {
+            if ($form->tags->textNew !== '') {
+                foreach ($form->tags->newNames as $tagName) {
+                    if (!$tag = $this->tags->findByName($tagName)) {
+                        $tag = Tag::create($tagName, $tagName);
+                        $this->tags->save($tag);
+                    }
+                    $product->assignTag($tag->id);
+                }
+            }
+            $this->products->save($product);
+        });
 
         return $product;
     }
@@ -67,7 +82,7 @@ class ProductService
     public function edit($id, ProductEditForm $form)
     {
         $product = $this->products->get($id);
-        $brand = $this->brands->get($id);
+        $brand = $this->brands->get($form->brandId);
         $product->edit(
             $brand->id,
             $form->code,
@@ -75,28 +90,27 @@ class ProductService
             $form->description,
             new Meta($form->meta->title, $form->meta->description, $form->meta->keywords),
         );
-        foreach ($form->values as $value) {
-            $product->setValue($value->id, $value->value);
-        }
-        $product->revokeTags();
-        $this->setTags($form, $product);
+        $this->transaction->wrap(function () use ($product, $form) {
+            $product->revokeTags();
+            $this->products->save($product);
 
-        return $product;
-    }
-
-    private function setTags($form,Product $product) {
-        foreach ($form->tags->existing as $tagId) {
-            $tag = $this->tags->get($tagId);
-            $product->assignTag($tag->id);
-        }
-        $this->transaction->wrap(function () use ($form, $product){
-            foreach ($form->tags->newNames as $tagName) {
-                if (!$tag = $this->tags->findByName($tagName)) {
-                    $tag = Tag::create($tagName, Inflector::slug($tagName));
-                    $this->tags->save($tag);
-                }
+            foreach ($form->values as $value) {
+                $product->setValue($value->id, $value->value);
+            }
+            foreach ($form->tags->existing as $tagId) {
+                $tag = $this->tags->get($tagId);
                 $product->assignTag($tag->id);
             }
+            if ($form->tags->textNew !== '') {
+                foreach ($form->tags->newNames as $tagName) {
+                    if (!$tag = $this->tags->findByName($tagName)) {
+                        $tag = Tag::create($tagName, $tagName);
+                        $this->tags->save($tag);
+                    }
+                    $product->assignTag($tag->id);
+                }
+            }
+
             $this->products->save($product);
         });
     }
