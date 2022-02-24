@@ -4,8 +4,23 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a26101ad1948e01447eac3999de1b13d",
+    "content-hash": "d2fb17775f878cdd8025fe24ad72e1a0",
     "packages": [
+        {
+            "name": "bower-asset/font-awesome",
+            "version": "6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "65f4bdb5025759ba25cd3432568de288b6a67527"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/65f4bdb5025759ba25cd3432568de288b6a67527",
+                "reference": "65f4bdb5025759ba25cd3432568de288b6a67527"
+            },
+            "type": "bower-asset"
+        },
         {
             "name": "bower-asset/inputmask",
             "version": "3.3.11",
