@@ -11,6 +11,8 @@ use yii\web\Controller;
 class SingupController extends Controller
 {
     private $service;
+    public $layout = 'cabinet';
+
 
     public function __construct($id, $module, AuthService $service, $config = [])
     {

@@ -16,6 +16,8 @@ class VerificationController extends \yii\web\Controller
 {
     private $verify;
     private $resend;
+    public $layout = 'cabinet';
+
 
     public function __construct($id, $module, VerifyEmailService $verify, ResendVerificationEmailService $resend, $config = [])
     {
