@@ -6,8 +6,8 @@
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use frontend\widgets\Shop\CartWidget;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
+use yii\bootstrap4\Nav;
+use yii\bootstrap4\NavBar;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
@@ -29,7 +29,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <link href="<?= Html::encode(Url::canonical()) ?>" rel="canonical"/>
-    <link href="<?= Yii::getAlias('@web/images/catalog/cart.png') ?>" rel="icon"/>
+    <link href="<?= Yii::getAlias('@web/image/cart.png') ?>" rel="icon"/>
     <?php $this->head() ?>
 </head>
 <body class="common-home">

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d2fb17775f878cdd8025fe24ad72e1a0",
+    "content-hash": "4a6cd37068f3b969ab783a405c45e9e6",
     "packages": [
         {
             "name": "bower-asset/font-awesome",
@@ -59,6 +59,24 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "bower-asset/owl.carousel",
+            "version": "2.3.4",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:OwlFonk/OwlCarousel2.git",
+                "reference": "af851f9b567630d115930abd5480ffebccc72372"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OwlFonk/OwlCarousel2/zipball/af851f9b567630d115930abd5480ffebccc72372",
+                "reference": "af851f9b567630d115930abd5480ffebccc72372"
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.8.3"
+            },
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/punycode",
