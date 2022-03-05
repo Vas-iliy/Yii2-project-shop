@@ -36,13 +36,13 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 <nav id="top">
     <div class="container">
-        <div class="pull-left">
+        <div class="float-left">
             <form action="/index.php?route=common/currency/currency" method="post"
                   enctype="multipart/form-data" id="form-currency">
                 <div class="btn-group">
                     <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
                         <strong>$</strong>
-                        <span class="hidden-xs hidden-sm hidden-md">Currency</span> <i class="fa fa-caret-down"></i>
+                        <span class="hidden-xs hidden-sm hidden-md">Currency</span>
                     </button>
                     <ul class="dropdown-menu">
                         <li>
@@ -65,11 +65,11 @@ AppAsset::register($this);
                 <input type="hidden" name="redirect" value="/index.php?route=common/home"/>
             </form>
         </div>
-        <div id="top-links" class="nav pull-right">
+        <div id="top-links" class="nav float-right">
             <ul class="list-inline">
-                <li><a href="/index.php?route=information/contact"><i class="fa fa-phone"></i></a>
+                <li class="list-inline-item"><a href="/index.php?route=information/contact"><i class="fa fa-phone"></i></a>
                     <span class="hidden-xs hidden-sm hidden-md">123456789</span></li>
-                <li class="dropdown"><a href="/index.php?route=account/account" title="My Account"
+                <li class="list-inline-item dropdown"><a href="/index.php?route=account/account" title="My Account"
                                         class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span
                                 class="hidden-xs hidden-sm hidden-md">My Account</span> <span class="caret"></span></a>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -82,13 +82,13 @@ AppAsset::register($this);
                         <?php endif; ?>
                     </ul>
                 </li>
-                <li><a href="<?= Url::to(['/cabinet/wishlist/index']) ?>" id="wishlist-total"
+                <li class="list-inline-item"><a href="<?= Url::to(['/cabinet/wishlist/index']) ?>" id="wishlist-total"
                        title="Wish List"><i class="fa fa-heart"></i> <span class="hidden-xs hidden-sm hidden-md">Wish List</span></a>
                 </li>
-                <li><a href="<?= Url::to(['/shop/cart/index']) ?>" title="Shopping Cart"><i
+                <li class="list-inline-item"><a href="<?= Url::to(['/shop/cart/index']) ?>" title="Shopping Cart"><i
                                 class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Shopping Cart</span></a>
                 </li>
-                <li><a href="/index.php?route=checkout/checkout" title="Checkout"><i
+                <li class="list-inline-item"><a href="/index.php?route=checkout/checkout" title="Checkout"><i
                                 class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md">Checkout</span></a>
                 </li>
             </ul>

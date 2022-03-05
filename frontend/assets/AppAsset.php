@@ -13,13 +13,13 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         '//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700',
+        'https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css',
         'css/stylesheet.css',
     ];
     public $js = [
         'js/common.js',
     ];
     public $depends = [
-        'frontend\assets\FontAwesomeAsset',
         'yii\web\YiiAsset',
         'yii\bootstrap4\BootstrapPluginAsset',
     ];
