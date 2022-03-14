@@ -7,6 +7,7 @@ use shop\readModels\Shop\CategoryReadRepository;
 use shop\readModels\Shop\ProductReadRepository;
 use shop\readModels\Shop\TagReadRepository;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class CatalogController extends Controller
 {
@@ -42,6 +43,45 @@ class CatalogController extends Controller
 
     public function actionCategory($id)
     {
-        return $this->render('index');
+        if (!$category = $this->categories->find($id)) {
+            throw new NotFoundHttpException('No categories');
+        }
+        $dataProvider = $this->products->getAllByCategory($category);
+        return $this->render('category', [
+            'category' => $category,
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+    public function actionBrand($id)
+    {
+        if (!$brand = $this->brands->find($id)) {
+            throw new NotFoundHttpException('No brands');
+        }
+        $dataProvider = $this->products->getAllByBrand($brand);
+        return $this->render('brand', [
+            'brand' => $brand,
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+    public function actionTag($id)
+    {
+        if (!$tag = $this->tags->find($id)) {
+            throw new NotFoundHttpException('No tags');
+        }
+        $dataProvider = $this->products->getAllByTag($tag);
+        return $this->render('tag', [
+            'tag' => $tag,
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+    public function actionProduct($id)
+    {
+        if (!$product = $this->products->find($id)) {
+            throw new NotFoundHttpException('No products');
+        }
+        return $this->render('product', compact('product'));
     }
 }
