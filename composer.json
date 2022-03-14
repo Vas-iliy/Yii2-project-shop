@@ -26,7 +26,8 @@
         "kartik-v/yii2-widget-fileinput": "^1.1",
         "yii-dream-team/yii2-upload-behavior": "*",
         "bower-asset/font-awesome": "^6.0",
-        "bower-asset/owl.carousel": "^2.3"
+        "bower-asset/owl.carousel": "^2.3",
+        "bower-asset/magnific-popup": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

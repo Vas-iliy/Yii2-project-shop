@@ -2,6 +2,8 @@
 
 namespace frontend\controllers\shop;
 
+use shop\forms\shop\AddToCartForm;
+use shop\forms\shop\ReviewForm;
 use shop\readModels\Shop\BrandReadRepository;
 use shop\readModels\Shop\CategoryReadRepository;
 use shop\readModels\Shop\ProductReadRepository;
@@ -56,7 +58,7 @@ class CatalogController extends Controller
     public function actionBrand($id)
     {
         if (!$brand = $this->brands->find($id)) {
-            throw new NotFoundHttpException('No brands');
+            throw new NotFoundHttpException('No brand');
         }
         $dataProvider = $this->products->getAllByBrand($brand);
         return $this->render('brand', [
@@ -68,7 +70,7 @@ class CatalogController extends Controller
     public function actionTag($id)
     {
         if (!$tag = $this->tags->find($id)) {
-            throw new NotFoundHttpException('No tags');
+            throw new NotFoundHttpException('No tag');
         }
         $dataProvider = $this->products->getAllByTag($tag);
         return $this->render('tag', [
@@ -80,8 +82,12 @@ class CatalogController extends Controller
     public function actionProduct($id)
     {
         if (!$product = $this->products->find($id)) {
-            throw new NotFoundHttpException('No products');
+            throw new NotFoundHttpException('No product');
         }
-        return $this->render('product', compact('product'));
+        $this->layout = 'blank';
+        $cartForm = new AddToCartForm($product);
+        $reviewForm = new ReviewForm();
+
+        return $this->render('product', compact('product', 'cartForm', 'reviewForm'));
     }
 }

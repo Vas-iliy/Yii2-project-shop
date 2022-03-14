@@ -2,12 +2,12 @@
 
 /* @var $this yii\web\View */
 /* @var $product shop\entities\Shop\Product\Product */
-/* @var $cartForm shop\forms\Shop\AddToCartForm */
-/* @var $reviewForm shop\forms\Shop\ReviewForm */
+/* @var $cartForm shop\forms\shop\AddToCartForm */
+/* @var $reviewForm shop\forms\shop\ReviewForm */
 
 use frontend\assets\MagnificPopupAsset;
 use shop\helpers\PriceHelper;
-use yii\bootstrap\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -131,7 +131,7 @@ MagnificPopupAsset::register($this);
         </ul>
         <div id="product">
 
-            <?php if ($product->isAvailable()): ?>
+            <?php /*if ($product->isAvailable()): */?>
 
                 <hr>
                 <h3>Available Options</h3>
@@ -152,13 +152,13 @@ MagnificPopupAsset::register($this);
 
                 <?php ActiveForm::end() ?>
 
-            <?php else: ?>
+            <?php /*else: */?><!--
 
                 <div class="alert alert-danger">
                     The product is not available for purchasing right now.<br />Add it to your wishlist.
                 </div>
 
-            <?php endif; ?>
+            --><?php /*endif; */?>
 
         </div>
         <div class="rating">
