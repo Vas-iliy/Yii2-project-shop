@@ -13,17 +13,6 @@ use frontend\widgets\Shop\FeaturedProductsWidget;
 
 <div class="row">
     <div id="content" class="col-sm-12">
-        <div id="slideshow0" class="owl-carousel" style="opacity: 1;">
-            <div class="item">
-                <a href="index.php?route=product/product&amp;path=57&amp;product_id=49"><img
-                            src="http://static/cache/banners/iPhone6-1140x380.jpg"
-                            alt="iPhone 6" class="img-responsive"/></a>
-            </div>
-            <div class="item">
-                <img src="http://static/cache/banners/MacBookAir-1140x380.jpg"
-                     alt="MacBookAir" class="img-responsive"/>
-            </div>
-        </div>
         <h3>Featured</h3>
 
         <?/*= FeaturedProductsWidget::widget([
@@ -36,7 +25,7 @@ use frontend\widgets\Shop\FeaturedProductsWidget;
             'limit' => 4,
         ]) */?>
 
-        <div id="carousel0" class="owl-carousel">
+        <!--<div id="carousel0" class="owl-carousel">
             <div class="item text-center">
                 <img src="http://static/cache/manufacturers/nfl-130x100.png" alt="NFL"
                      class="img-responsive"/>
@@ -81,7 +70,7 @@ use frontend\widgets\Shop\FeaturedProductsWidget;
                 <img src="http://static/cache/manufacturers/nintendo-130x100.png"
                      alt="Nintendo" class="img-responsive"/>
             </div>
-        </div>
+        </div>-->
         <?= $content ?>
     </div>
 </div>
