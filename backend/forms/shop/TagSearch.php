@@ -7,7 +7,7 @@ use yii\data\ActiveDataProvider;
 use shop\entities\shop\Tag;
 
 /**
- * TagSearch represents the model behind the search form of `shop\entities\shop\Tag`.
+ * TagSearch represents the model behind the search form of `shop\queries\shop\Tag`.
  */
 class TagSearch extends Tag
 {

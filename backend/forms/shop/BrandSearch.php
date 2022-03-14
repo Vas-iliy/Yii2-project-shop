@@ -7,7 +7,7 @@ use yii\data\ActiveDataProvider;
 use shop\entities\shop\Brand;
 
 /**
- * BrandSearch represents the model behind the search form of `shop\entities\shop\Brand`.
+ * BrandSearch represents the model behind the search form of `shop\queries\shop\Brand`.
  */
 class BrandSearch extends Model
 {
