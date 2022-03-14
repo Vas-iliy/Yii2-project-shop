@@ -2,7 +2,7 @@
 
 namespace shop\readModels\Shop;
 
-use yii\base\InvalidConfigException;
+/*use yii\base\InvalidConfigException;
 use yii\data\ActiveDataProvider;
 use yii\db\QueryInterface;
 
@@ -30,4 +30,4 @@ class SimpleActiveDataProvider extends ActiveDataProvider
 
         return $this->totalCount;
     }
-}
+}*/

@@ -2,7 +2,7 @@
 
 namespace shop\readModels\Shop;
 
-use shop\entities\Shop\DeliveryMethod;
+/*use shop\entities\Shop\DeliveryMethod;
 
 class DeliveryMethodReadRepository
 {
@@ -10,4 +10,4 @@ class DeliveryMethodReadRepository
     {
         return DeliveryMethod::find()->orderBy('sort')->all();
     }
-}
+}*/

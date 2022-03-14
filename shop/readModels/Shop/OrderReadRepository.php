@@ -2,7 +2,7 @@
 
 namespace shop\readModels\Shop;
 
-use shop\entities\Shop\Order\Order;
+/*use shop\entities\Shop\Order\Order;
 use yii\data\ActiveDataProvider;
 
 class OrderReadRepository
@@ -21,4 +21,4 @@ class OrderReadRepository
     {
         return Order::find()->andWhere(['user_id' => $userId, 'id' => $id])->one();
     }
-}
+}*/

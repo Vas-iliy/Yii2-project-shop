@@ -1,10 +1,7 @@
 <?php
 
-
 namespace frontend\controllers\shop;
 
-
-use shop\entities\shop\product\Product;
 use yii\web\Controller;
 
 class CatalogController extends Controller
@@ -13,7 +10,11 @@ class CatalogController extends Controller
 
     public function actionIndex()
     {
-        Product::find()->active()->all();
+        return $this->render('index');
+    }
+
+    public function actionCategory($id)
+    {
         return $this->render('index');
     }
 }

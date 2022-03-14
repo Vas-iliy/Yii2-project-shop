@@ -2,21 +2,20 @@
 
 namespace shop\readModels\Shop;
 
-use Elasticsearch\Client;
 use shop\entities\Shop\Category;
 use shop\readModels\Shop\views\CategoryView;
 use yii\helpers\ArrayHelper;
 
 class CategoryReadRepository
 {
-    private $client;
+    /*private $client;
 
     public function __construct(Client $client)
     {
         $this->client = $client;
-    }
+    }*/
 
-    public function getRoot(): Category
+    public function getRoot()
     {
         return Category::find()->roots()->one();
     }
@@ -29,17 +28,17 @@ class CategoryReadRepository
         return Category::find()->andWhere(['>', 'depth', 0])->orderBy('lft')->all();
     }
 
-    public function find($id): ?Category
+    public function find($id)
     {
         return Category::find()->andWhere(['id' => $id])->andWhere(['>', 'depth', 0])->one();
     }
 
-    public function findBySlug($slug): ?Category
+    public function findBySlug($slug)
     {
         return Category::find()->andWhere(['slug' => $slug])->andWhere(['>', 'depth', 0])->one();
     }
 
-    public function getTreeWithSubsOf(Category $category = null): array
+    /*public function getTreeWithSubsOf(Category $category = null)
     {
         $query = Category::find()->andWhere(['>', 'depth', 0])->orderBy('lft');
 
@@ -73,5 +72,5 @@ class CategoryReadRepository
         return array_map(function (Category $category) use ($counts) {
             return new CategoryView($category, ArrayHelper::getValue($counts, $category->id, 0));
         }, $query->all());
-    }
+    }*/
 }

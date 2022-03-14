@@ -16,12 +16,12 @@ use yii\helpers\ArrayHelper;
 
 class ProductReadRepository
 {
-    private $client;
+    /*private $client;
 
     public function __construct(Client $client)
     {
         $this->client = $client;
-    }
+    }*/
 
     public function count(): int
     {
@@ -36,18 +36,18 @@ class ProductReadRepository
     /**
      * @return iterable|Product[]
      */
-    public function getAllIterator(): iterable
+    public function getAllIterator()
     {
         return Product::find()->alias('p')->active('p')->with('mainPhoto', 'brand')->each();
     }
 
-    public function getAll(): DataProviderInterface
+    public function getAll()
     {
         $query = Product::find()->alias('p')->active('p')->with('mainPhoto');
         return $this->getProvider($query);
     }
 
-    public function getAllByCategory(Category $category): DataProviderInterface
+    public function getAllByCategory(Category $category)
     {
         $query = Product::find()->alias('p')->active('p')->with('mainPhoto', 'category');
         $ids = ArrayHelper::merge([$category->id], $category->getDescendants()->select('id')->column());
@@ -57,14 +57,14 @@ class ProductReadRepository
         return $this->getProvider($query);
     }
 
-    public function getAllByBrand(Brand $brand): DataProviderInterface
+    public function getAllByBrand(Brand $brand)
     {
         $query = Product::find()->alias('p')->active('p')->with('mainPhoto');
         $query->andWhere(['p.brand_id' => $brand->id]);
         return $this->getProvider($query);
     }
 
-    public function getAllByTag(Tag $tag): DataProviderInterface
+    public function getAllByTag(Tag $tag)
     {
         $query = Product::find()->alias('p')->active('p')->with('mainPhoto');
         $query->joinWith(['tagAssignments ta'], false);
@@ -78,7 +78,7 @@ class ProductReadRepository
         return Product::find()->with('mainPhoto')->orderBy(['id' => SORT_DESC])->limit($limit)->all();
     }
 
-    public function find($id): ?Product
+    public function find($id)
     {
         return Product::find()->active()->andWhere(['id' => $id])->one();
     }
@@ -114,7 +114,7 @@ class ProductReadRepository
         ]);
     }
 
-    public function search(SearchForm $form): DataProviderInterface
+    /*public function search(SearchForm $form): DataProviderInterface
     {
         $pagination = new Pagination([
             'pageSizeLimit' => [15, 100],
@@ -191,7 +191,7 @@ class ProductReadRepository
             'pagination' => $pagination,
             'sort' => $sort,
         ]);
-    }
+    }*/
 
     public function getWishList($userId): ActiveDataProvider
     {
