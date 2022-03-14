@@ -2,7 +2,7 @@
 
 namespace frontend\widgets\Shop;
 
-/*use shop\entities\Shop\Category;
+use shop\entities\shop\Category;
 use shop\readModels\Shop\CategoryReadRepository;
 use shop\readModels\Shop\views\CategoryView;
 use yii\base\Widget;
@@ -20,18 +20,18 @@ class CategoriesWidget extends Widget
         $this->categories = $categories;
     }
 
-    public function run(): string
+    public function run()
     {
-        return Html::tag('div', implode(PHP_EOL, array_map(function (CategoryView $view) {
-            $indent = ($view->category->depth > 1 ? str_repeat('&nbsp;&nbsp;&nbsp;', $view->category->depth - 1) . '- ' : '');
-            $active = $this->active && ($this->active->id == $view->category->id || $this->active->isChildOf($view->category));
+        return Html::tag('div', implode(PHP_EOL, array_map(function (Category $category) {
+            $indent = ($category->depth > 1 ? str_repeat('&nbsp;&nbsp;&nbsp;', $category->depth - 1) . '- ' : '');
+            $active = $this->active && ($this->active->id == $category->id || $this->active->isChildOf($category));
             return Html::a(
-                $indent . Html::encode($view->category->name) . ' (' . $view->count . ')',
-                ['/shop/catalog/category', 'id' => $view->category->id],
+                $indent . Html::encode($category->name),
+                ['/shop/catalog/category', 'id' => $category->id],
                 ['class' => $active ? 'list-group-item active' : 'list-group-item']
             );
         }, $this->categories->getTreeWithSubsOf($this->active))), [
             'class' => 'list-group',
         ]);
     }
-}*/
+}

@@ -38,7 +38,7 @@ class CategoryReadRepository
         return Category::find()->andWhere(['slug' => $slug])->andWhere(['>', 'depth', 0])->one();
     }
 
-    /*public function getTreeWithSubsOf(Category $category = null)
+    public function getTreeWithSubsOf(Category $category = null)
     {
         $query = Category::find()->andWhere(['>', 'depth', 0])->orderBy('lft');
 
@@ -52,7 +52,9 @@ class CategoryReadRepository
             $query->andWhere(['depth' => 1]);
         }
 
-        $aggs = $this->client->search([
+        return $query->all();
+
+        /*$aggs = $this->client->search([
             'index' => 'shop',
             'type' => 'products',
             'body' => [
@@ -71,6 +73,6 @@ class CategoryReadRepository
 
         return array_map(function (Category $category) use ($counts) {
             return new CategoryView($category, ArrayHelper::getValue($counts, $category->id, 0));
-        }, $query->all());
-    }*/
+        }, $query->all());*/
+    }
 }

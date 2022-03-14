@@ -75,7 +75,7 @@ AppAsset::register($this);
                     <ul class="dropdown-menu dropdown-menu-right">
                         <?php if (Yii::$app->user->isGuest): ?>
                             <li><a href="<?= Html::encode(Url::to(['/auth/auth/login'])) ?>">Login</a></li>
-                            <li><a href="<?= Html::encode(Url::to(['/auth/signup/request'])) ?>">Signup</a></li>
+                            <li><a href="<?= Html::encode(Url::to(['/auth/singup/index'])) ?>">Signup</a></li>
                         <?php else: ?>
                             <li><a href="<?= Html::encode(Url::to(['/cabinet/default/index'])) ?>">Cabinet</a></li>
                             <li><a href="<?= Html::encode(Url::to(['/auth/auth/logout'])) ?>" data-method="post">Logout</a></li>

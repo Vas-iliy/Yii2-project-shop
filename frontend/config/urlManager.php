@@ -10,12 +10,14 @@ return [
         'about' => 'site/about',
         'contact' => 'contact/index',
         'singup' => 'auth/singup/index',
-        'singup/<_a:[\w-]+>' => 'auth/singup/<_a>',
         '<_a:login|logout>' => 'auth/auth/<_a>',
         'resend-email' => 'auth/verification/resend-email',
         'request-password' => 'auth/reset/request',
 
         'cabinet' => 'cabinet/default/index',
+
+        'catalog' => 'shop/catalog/index',
+        'catalog/<id:\d+>' => 'shop/catalog/product',
 
         '<_c:[\w\-]+>' => '<_c>/index',
         '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',
