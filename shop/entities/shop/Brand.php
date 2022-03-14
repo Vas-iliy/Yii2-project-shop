@@ -39,6 +39,11 @@ class Brand extends ActiveRecord
         $this->meta = $meta;
     }
 
+    public function getSeoTitle()
+    {
+        return $this->meta->title ?: $this->name;
+    }
+
     public function behaviors(): array
     {
         return [
