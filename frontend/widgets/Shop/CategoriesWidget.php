@@ -4,7 +4,6 @@ namespace frontend\widgets\Shop;
 
 use shop\entities\shop\Category;
 use shop\readModels\Shop\CategoryReadRepository;
-use shop\readModels\Shop\views\CategoryView;
 use yii\base\Widget;
 use yii\helpers\Html;
 

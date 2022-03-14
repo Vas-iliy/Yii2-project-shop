@@ -3,7 +3,6 @@
 namespace shop\readModels\Shop;
 
 use shop\entities\Shop\Category;
-use shop\readModels\Shop\views\CategoryView;
 use yii\helpers\ArrayHelper;
 
 class CategoryReadRepository
