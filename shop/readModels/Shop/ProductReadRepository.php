@@ -83,7 +83,7 @@ class ProductReadRepository
         return Product::find()->active()->andWhere(['id' => $id])->one();
     }
 
-    private function getProvider(ActiveQuery $query): ActiveDataProvider
+    private function getProvider(ActiveQuery $query)
     {
         return new ActiveDataProvider([
             'query' => $query,
@@ -193,7 +193,7 @@ class ProductReadRepository
         ]);
     }*/
 
-    public function getWishList($userId): ActiveDataProvider
+    public function getWishList($userId)
     {
         return new ActiveDataProvider([
             'query' => Product::find()

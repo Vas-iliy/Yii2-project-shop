@@ -2,7 +2,7 @@
 
 namespace frontend\widgets\Shop;
 
-use shop\entities\Shop\Category;
+/*use shop\entities\Shop\Category;
 use shop\readModels\Shop\CategoryReadRepository;
 use shop\readModels\Shop\views\CategoryView;
 use yii\base\Widget;
@@ -10,7 +10,6 @@ use yii\helpers\Html;
 
 class CategoriesWidget extends Widget
 {
-    /** @var Category|null */
     public $active;
 
     private $categories;
@@ -35,4 +34,4 @@ class CategoriesWidget extends Widget
             'class' => 'list-group',
         ]);
     }
-}
+}*/
