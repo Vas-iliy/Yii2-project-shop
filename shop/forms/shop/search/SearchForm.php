@@ -5,10 +5,12 @@ namespace shop\forms\shop\search;
 use shop\entities\shop\Brand;
 use shop\entities\shop\Category;
 use shop\entities\shop\Characteristic;
-use shop\forms\admin\shop\product\ValueForm;
 use shop\forms\CompositeForm;
 use yii\helpers\ArrayHelper;
 
+/**
+ * @property ValueForm[] $values
+ */
 class SearchForm extends CompositeForm
 {
     public $text;

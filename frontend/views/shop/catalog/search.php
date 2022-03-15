@@ -4,7 +4,7 @@
 /* @var $dataProvider yii\data\DataProviderInterface */
 /* @var $searchForm \shop\forms\Shop\Search\SearchForm */
 
-use yii\bootstrap\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 
 $this->title = 'Search';
